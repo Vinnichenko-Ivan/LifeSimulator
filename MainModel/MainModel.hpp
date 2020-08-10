@@ -1,13 +1,29 @@
+#pragma once
 #include "public/IOldingCreatures.hpp"
 #include "entity/Creature.hpp"
-class MainModel:public QObject
-{
-    private:
+#include <QObject>
 
-    public:
-        std::vector<IOldingCreatures *> creatures;
-        void update()
-        {
-           qDebug() << "C++ Style Debug Message";
-        }
+class QTimer;
+
+class IOldingCreatures;
+
+class MainModel: public QObject
+{
+    Q_OBJECT
+
+private:
+    std::vector<Creature> creatures;
+    std::vector<IOldingCreatures *> oldingCreaturesInterface;
+    QTimer * timer;
+
+public:       
+
+    explicit MainModel(QObject * parent = nullptr);
+    void addCreature(Creature newCreature);
+    void start();
+    void stop();
+    void update();
+    void oldingCreatures();
+
+
 };

@@ -39,6 +39,8 @@ else()
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
+    MainModel/MainModel.hpp
+    MainModel/MainModel.cpp
   )
 endif()
 
