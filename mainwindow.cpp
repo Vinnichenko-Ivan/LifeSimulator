@@ -1,11 +1,12 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-
+#include <GUI/FildWidget.cpp>
 #include <QHBoxLayout>
 
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
 {
+    FildWidget* arena=new FildWidget();
     pauseButton = new QPushButton("=");
     auto * layout = new QHBoxLayout();
     layout->addWidget(pauseButton);

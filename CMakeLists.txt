@@ -41,6 +41,8 @@ else()
     mainwindow.ui
     MainModel/MainModel.hpp
     MainModel/MainModel.cpp
+    GUI/FildWidget.hpp
+    GUI/FildWidget.cpp
   )
 endif()
 

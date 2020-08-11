@@ -24,7 +24,7 @@ private:
     QPushButton *pauseButton;
     MainModel model;
     bool onPauseSymbol=0;
-    FildWidget* arena=new FildWidget;
+    FildWidget* arena;
 
 };
 #endif // MAINWINDOW_H
