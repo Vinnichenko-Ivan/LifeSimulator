@@ -1,27 +1,32 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
+#include <QHBoxLayout>
+
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    : QWidget(parent)
 {
-    pauseButton = new QPushButton("=", this);
-    ui->setupUi(this);
-    pauseButton->setGeometry(QRect(QPoint(100, 100),
-    QSize(50, 50)));
+    pauseButton = new QPushButton("=");
+    auto * layout = new QHBoxLayout();
+    layout->addWidget(pauseButton);
+    setLayout(layout);
     connect(pauseButton,   &QPushButton::clicked, this,  &MainWindow::pauseButtonSlot);
+    connect(this,&MainWindow::paused,&model,&MainModel::pauseLife);
 }
 
 void MainWindow::pauseButtonSlot()
 {
- // меняем текст
- pauseButton->setText("Example");
- // изменяем размер кнопки
- pauseButton->resize(100,100);
+     // меняем текст
+     if(onPauseSymbol)
+     {
+         onPauseSymbol=0;
+         pauseButton->setText("=");
+     }
+     else
+     {
+         onPauseSymbol=1;
+         pauseButton->setText(">");
+     }
+     paused();
+     qDebug() << "paused";
 }
-
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
-

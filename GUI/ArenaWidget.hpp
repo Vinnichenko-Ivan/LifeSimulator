@@ -1,16 +1,11 @@
-#ifndef ARENAWIDGET_HPP
-#define ARENAWIDGET_HPP
 
 #include <QWidget>
-
+#include <QObject>
 class ArenaWidget : public QWidget
 {
     Q_OBJECT
-public:
-    explicit ArenaWidget(QWidget *parent = nullptr);
-
-signals:
-
+    public:
+    ArenaWidget();
+        int a;
 };
 
-#endif // ARENAWIDGET_HPP

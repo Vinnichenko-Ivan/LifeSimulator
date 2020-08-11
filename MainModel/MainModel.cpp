@@ -30,9 +30,15 @@ void MainModel::stop() {
 
 void MainModel::oldingCreatures()
 {
-    for(auto * n : oldingCreaturesInterface)
+    if(onPause)
     {
-        n->update();
+
+    }
+    else{
+        for(auto * n : oldingCreaturesInterface)
+        {
+            n->update();
+        }
     }
 }
 
@@ -41,4 +47,15 @@ void MainModel::update()
     //oldingCreatures();
     qDebug() << Q_FUNC_INFO;
     oldingCreatures();
+}
+void  MainModel::pauseLife()
+{
+    if(onPause)
+    {
+        onPause=0;
+    }
+    else
+    {
+        onPause=1;
+    }
 }

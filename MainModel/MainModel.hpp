@@ -17,13 +17,13 @@ private:
     QTimer * timer;
 
 public:       
-
+    bool onPause=0;
     explicit MainModel(QObject * parent = nullptr);
     void addCreature(Creature newCreature);
     void start();
     void stop();
     void update();
     void oldingCreatures();
-
-
+public slots:
+    void pauseLife();
 };
