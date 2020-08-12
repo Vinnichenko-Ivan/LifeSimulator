@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-#include <GUI/FildWidget.cpp>
+
 #include <QHBoxLayout>
 
 MainWindow::MainWindow(QWidget *parent)

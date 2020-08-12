@@ -1,6 +1,3 @@
-#include "FildWidget.hpp"
+#include <QWidget>
 
-FildWidget::FildWidget(QWidget *parent) : QWidget(parent)
-{
 
-}

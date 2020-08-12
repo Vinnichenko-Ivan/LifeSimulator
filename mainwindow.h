@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QPushButton>
 #include <MainModel/MainModel.hpp>
-#include <GUI/FildWidget.cpp>
+#include <GUI/FildWidget.hpp>
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
