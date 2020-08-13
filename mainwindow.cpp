@@ -2,17 +2,22 @@
 #include "./ui_mainwindow.h"
 
 #include <QHBoxLayout>
-
+#include <QPainter>
+#include <QPen>
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
 {
-    FildWidget* arena=new FildWidget();
+     arena=new AreaWidget();
     pauseButton = new QPushButton("=");
     auto * layout = new QHBoxLayout();
+    layout->addWidget(arena);
     layout->addWidget(pauseButton);
+
     setLayout(layout);
     connect(pauseButton,   &QPushButton::clicked, this,  &MainWindow::pauseButtonSlot);
     connect(this,&MainWindow::paused,&model,&MainModel::pauseLife);
+    arena->testDraw();
+
 }
 
 void MainWindow::pauseButtonSlot()

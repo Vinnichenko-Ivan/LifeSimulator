@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QPushButton>
 #include <MainModel/MainModel.hpp>
-#include <GUI/FildWidget.hpp>
+#include <GUI/AreaWidget.h>
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -24,7 +24,7 @@ private:
     QPushButton *pauseButton;
     MainModel model;
     bool onPauseSymbol=0;
-    FildWidget* arena;
+    AreaWidget* arena;
 
 };
 #endif // MAINWINDOW_H
