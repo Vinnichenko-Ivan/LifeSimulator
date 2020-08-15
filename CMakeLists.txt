@@ -43,6 +43,8 @@ else()
     MainModel/MainModel.cpp
     GUI/AreaWidget.h
     GUI/AreaWidget.cpp
+    GUI/SettingWidget.h
+    GUI/SettingWidget.cpp
   )
 endif()
 

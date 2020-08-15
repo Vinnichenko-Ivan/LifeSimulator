@@ -1,6 +1,6 @@
 #include "SettingWidget.h"
 
-SettingWidget::SettingWidget()
+SettingWidget::SettingWidget(QWidget *parent) : QWidget(parent)
 {
 
 }

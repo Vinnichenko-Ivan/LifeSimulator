@@ -5,7 +5,7 @@ AreaWidget::AreaWidget(QWidget *parent) : QWidget(parent)
 
 }
 
-void AreaWidget::testDraw()
+void AreaWidget::paintEvent(QPaintEvent *event)
 {
 
     QPainter p(this);

@@ -8,7 +8,7 @@ class AreaWidget : public QWidget
     Q_OBJECT
 public:
     explicit AreaWidget(QWidget *parent = nullptr);
-    void testDraw();
+    void paintEvent(QPaintEvent * event) override;
 signals:
 
 };

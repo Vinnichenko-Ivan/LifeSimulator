@@ -1,11 +1,16 @@
 #ifndef SETTINGWIDGET_H
 #define SETTINGWIDGET_H
 
+#include <QWidget>
 
-class SettingWidget
+class SettingWidget : public QWidget
 {
+    Q_OBJECT
 public:
-    SettingWidget();
+    explicit SettingWidget(QWidget *parent = nullptr);
+
+signals:
+
 };
 
 #endif // SETTINGWIDGET_H

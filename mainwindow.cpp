@@ -16,7 +16,6 @@ MainWindow::MainWindow(QWidget *parent)
     setLayout(layout);
     connect(pauseButton,   &QPushButton::clicked, this,  &MainWindow::pauseButtonSlot);
     connect(this,&MainWindow::paused,&model,&MainModel::pauseLife);
-    arena->testDraw();
 
 }
 
