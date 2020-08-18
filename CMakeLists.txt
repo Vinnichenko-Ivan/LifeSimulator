@@ -45,6 +45,12 @@ else()
     GUI/AreaWidget.cpp
     GUI/SettingWidget.h
     GUI/SettingWidget.cpp
+    GUI/UpPanelWidget.h
+    GUI/UpPanelWidget.cpp
+    GUI/GeneratorsSettingWidget.h
+    GUI/GeneratorsSettingWidget.cpp
+    GUI/StatisticWidget.h
+    GUI/StatisticWidget.cpp
   )
 endif()
 

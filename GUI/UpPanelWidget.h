@@ -1,18 +1,18 @@
-#ifndef SETTINGWIDGET_H
-#define SETTINGWIDGET_H
+#ifndef UPPANELWIDGET_H
+#define UPPANELWIDGET_H
 
 #include <QWidget>
 #include <QWidget>
 #include <QPainter>
-class SettingWidget : public QWidget
+class UpPanelWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit SettingWidget(QWidget *parent = nullptr);
+    explicit UpPanelWidget(QWidget *parent = nullptr);
     void paintEvent(QPaintEvent * event) override;
     void widgetZone();
 signals:
 
 };
 
-#endif // SETTINGWIDGET_H
+#endif // UPPANELWIDGET_H
