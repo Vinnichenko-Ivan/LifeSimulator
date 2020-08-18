@@ -11,7 +11,7 @@ class AreaWidget : public QWidget
 public:
     explicit AreaWidget(QWidget *parent = nullptr);
     void paintEvent(QPaintEvent * event) override;
-    void widgetZone();
+    void Background();
 signals:
 
 };

@@ -1,8 +1,7 @@
 #include <QTimer>
 #include <QDebug>
-#include "public/IOldingCreatures.hpp"
-#include "entity/Creature.cpp"
-#include "MainModel.hpp"
+#include "public/IOldingCreatures.h"
+#include "MainModel.h"
 
 
 

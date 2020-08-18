@@ -1,6 +1,6 @@
 #pragma once
-#include "public/IOldingCreatures.hpp"
-#include "entity/Creature.hpp"
+#include "public/IOldingCreatures.h"
+#include <Creature>
 #include <QObject>
 
 class QTimer;

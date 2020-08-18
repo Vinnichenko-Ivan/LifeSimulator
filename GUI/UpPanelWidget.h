@@ -10,7 +10,7 @@ class UpPanelWidget : public QWidget
 public:
     explicit UpPanelWidget(QWidget *parent = nullptr);
     void paintEvent(QPaintEvent * event) override;
-    void widgetZone();
+    void Background();
 signals:
 
 };

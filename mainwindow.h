@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QPushButton>
-#include <MainModel/MainModel.hpp>
+#include <MainModel/MainModel.h>
 #include <GUI/AreaWidget.h>
 #include <GUI/UpPanelWidget.h>
 #include <GUI/GeneratorsSettingWidget.h>
@@ -23,12 +23,15 @@ public:
     void graphicStart();
     void graphicStop();
 private slots:
-    void pauseButtonSlot();
+    //void pauseButtonSlot();
+    void pauseLife();
+public slots:
+
 signals:
     void paused();
 
 private:
-    QPushButton *pauseButton;
+
     MainModel model;
     bool onPauseSymbol=0;
     AreaWidget* arena;

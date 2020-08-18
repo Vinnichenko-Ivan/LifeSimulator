@@ -5,7 +5,7 @@ UpPanelWidget::UpPanelWidget(QWidget *parent) : QWidget(parent)
 
 }
 
-void UpPanelWidget::widgetZone()
+void UpPanelWidget::Background()
 {
     QPalette p(palette());
     p.setColor(QPalette::Background, Qt::green);
@@ -16,5 +16,5 @@ void UpPanelWidget::widgetZone()
 
 void UpPanelWidget::paintEvent(QPaintEvent *event)
 {
-    widgetZone();
+    Background();
 }

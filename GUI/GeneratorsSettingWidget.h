@@ -10,7 +10,7 @@ class GeneratorsSettingWidget : public QWidget
 public:
     explicit GeneratorsSettingWidget(QWidget *parent = nullptr);
     void paintEvent(QPaintEvent * event) override;
-    void widgetZone();
+    void Background();
 signals:
 
 };

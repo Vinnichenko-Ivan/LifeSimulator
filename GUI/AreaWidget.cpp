@@ -5,7 +5,7 @@ AreaWidget::AreaWidget(QWidget *parent) : QWidget(parent)
 
 }
 
-void AreaWidget::widgetZone()
+void AreaWidget::Background()
 {
     QPalette p(palette());
     p.setColor(QPalette::Background, Qt::black);
@@ -15,5 +15,5 @@ void AreaWidget::widgetZone()
 }
 void AreaWidget::paintEvent(QPaintEvent *event)
 {
-    widgetZone();
+    Background();
 }

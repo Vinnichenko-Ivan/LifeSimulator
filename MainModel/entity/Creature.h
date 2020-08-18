@@ -1,5 +1,7 @@
-#include <QDebug>
+
 #pragma once
+#include <QDebug>
+#include <IOldingCreatures>
 class Creature:public IOldingCreatures
 {
 

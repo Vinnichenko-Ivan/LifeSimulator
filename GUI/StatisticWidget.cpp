@@ -4,7 +4,7 @@ StatisticWidget::StatisticWidget(QWidget *parent) : QWidget(parent)
 {
 
 }
-void StatisticWidget::widgetZone()
+void StatisticWidget::Background()
 {
     QPalette p(palette());
     p.setColor(QPalette::Background, Qt::red);
@@ -14,5 +14,5 @@ void StatisticWidget::widgetZone()
 }
 void StatisticWidget::paintEvent(QPaintEvent *event)
 {
-    widgetZone();
+    Background();
 }

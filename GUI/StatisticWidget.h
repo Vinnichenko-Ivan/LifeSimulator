@@ -10,7 +10,7 @@ class StatisticWidget : public QWidget
 public:
     explicit StatisticWidget(QWidget *parent = nullptr);
     void paintEvent(QPaintEvent * event) override;
-    void widgetZone();
+    void Background();
 signals:
 
 };

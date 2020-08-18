@@ -39,8 +39,15 @@ else()
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
-    MainModel/MainModel.hpp
+    MainModel/entity/Creature.h
+    MainModel/entity/Creature.cpp
+    MainModel/entity/Food.h
+    MainModel/entity/Food.cpp
+    MainModel/entity/Wall.h
+    MainModel/entity/Wall.cpp
+    MainModel/MainModel.h
     MainModel/MainModel.cpp
+    MainModel/public/IOldingCreatures.h
     GUI/AreaWidget.h
     GUI/AreaWidget.cpp
     GUI/SettingWidget.h
@@ -51,6 +58,8 @@ else()
     GUI/GeneratorsSettingWidget.cpp
     GUI/StatisticWidget.h
     GUI/StatisticWidget.cpp
+    Generators/CreaturesGenerator.h
+    Generators/CreaturesGenerator.cpp
   )
 endif()
 

@@ -4,7 +4,7 @@ GeneratorsSettingWidget::GeneratorsSettingWidget(QWidget *parent) : QWidget(pare
 {
 
 }
-void GeneratorsSettingWidget::widgetZone()
+void GeneratorsSettingWidget::Background()
 {
     QPalette p(palette());
     p.setColor(QPalette::Background, Qt::yellow);
@@ -14,5 +14,5 @@ void GeneratorsSettingWidget::widgetZone()
 }
 void GeneratorsSettingWidget::paintEvent(QPaintEvent *event)
 {
-    widgetZone();
+    Background();
 }
