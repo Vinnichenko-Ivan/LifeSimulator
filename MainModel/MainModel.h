@@ -1,7 +1,11 @@
 #pragma once
-#include "public/IOldingCreatures.h"
-#include <Creature>
+#include "entity/public/IOldingCreatures.h"
+#include "entity/Creature.h"
 #include <QObject>
+#include <QTimer>
+#include <QDebug>
+#include "entity/Creature.h"
+#include "../Generators/CreaturesGenerator.h"
 
 class QTimer;
 
@@ -17,6 +21,7 @@ private:
     QTimer * timer;
 
 public:       
+    CreaturesGenerator creatureGenerator;
     bool onPause=0;
     explicit MainModel(QObject * parent = nullptr);
     void addCreature(Creature newCreature);

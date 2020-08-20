@@ -5,8 +5,6 @@
 #include <vector>
 #include <iostream>
 #include "mainwindow.h"
-#include "MainModel/public/IOldingCreatures.h"
-#include "MainModel/entity/Creature.cpp"
 #include "MainModel/MainModel.h"
 //#include "MainModel/entity/Creature.hpp"
 

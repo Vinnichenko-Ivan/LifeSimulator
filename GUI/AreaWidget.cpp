@@ -8,7 +8,7 @@ AreaWidget::AreaWidget(QWidget *parent) : QWidget(parent)
 void AreaWidget::Background()
 {
     QPalette p(palette());
-    p.setColor(QPalette::Background, Qt::black);
+    p.setColor(QPalette::Background, Qt::lightGray);
     setAutoFillBackground(true);
     setPalette(p);
     render(this);

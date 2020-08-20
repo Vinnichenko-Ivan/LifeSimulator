@@ -1,15 +1,9 @@
-#include <QTimer>
-#include <QDebug>
-#include "public/IOldingCreatures.h"
 #include "MainModel.h"
-
-
 
 MainModel::MainModel(QObject *parent): QObject(parent) {
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &MainModel::update);
-    Creature creature;
-    addCreature(creature);
+    addCreature(creatureGenerator.createRandomCreatures());
     start();
 }
 
@@ -33,7 +27,8 @@ void MainModel::oldingCreatures()
     {
 
     }
-    else{
+    else
+    {
         for(auto * n : oldingCreaturesInterface)
         {
             n->update();

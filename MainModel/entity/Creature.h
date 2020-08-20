@@ -1,11 +1,13 @@
 
 #pragma once
 #include <QDebug>
-#include <IOldingCreatures>
+#include "public/IOldingCreatures.h"
+#include "struct/Cordinate.h"
 class Creature:public IOldingCreatures
 {
 
     public:
+        Cordinate cordinate;
         long long int age=0;
         virtual void update() override
         {
