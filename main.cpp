@@ -8,8 +8,6 @@
 #include "MainModel/MainModel.h"
 //#include "MainModel/entity/Creature.hpp"
 
-
-
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

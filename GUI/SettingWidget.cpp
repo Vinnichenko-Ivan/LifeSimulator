@@ -14,7 +14,6 @@ void SettingWidget::Background()
     p.setColor(QPalette::Background, Qt::gray);
     setAutoFillBackground(true);
     setPalette(p);
-    render(this);
 }
 void SettingWidget::paintEvent(QPaintEvent *event)
 {

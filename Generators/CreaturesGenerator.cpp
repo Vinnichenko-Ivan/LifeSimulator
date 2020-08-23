@@ -1,12 +1,6 @@
 #include "CreaturesGenerator.h"
 
-CreaturesGenerator::CreaturesGenerator()
+CreaturesGenerator::CreaturesGenerator(QObject *parent) : QObject(parent)
 {
 
-}
-
-Creature CreaturesGenerator::createRandomCreatures()
-{
-    Creature creature;
-    return creature;
 }

@@ -10,7 +10,6 @@ void GeneratorsSettingWidget::Background()
     p.setColor(QPalette::Background, Qt::yellow);
     setAutoFillBackground(true);
     setPalette(p);
-    render(this);
 }
 void GeneratorsSettingWidget::paintEvent(QPaintEvent *event)
 {

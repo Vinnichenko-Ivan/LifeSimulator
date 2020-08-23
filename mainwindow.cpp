@@ -1,15 +1,11 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
-#include <QHBoxLayout>
-#include <QPainter>
-#include <QPen>
-#include <Qt>
-#include <QTimer>
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
 {
-
+    creaturesGenerator = new CreaturesGenerator(this);
+    model = new MainModel(creaturesGenerator);
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &MainWindow::graphicUpdate);
     arena=new AreaWidget(this);
@@ -17,8 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     settings= new SettingWidget(this);
     statistics=new StatisticWidget(this);
     generatoesSetting=new GeneratorsSettingWidget(this);
-    //pauseButton = new QPushButton("=");
-    QGridLayout * layout = new QGridLayout();//15 на 35
+    QGridLayout * layout = new QGridLayout(this);//15 на 35
     layout->addWidget(upPanel,0,0,1,15);
     layout->addWidget(arena,1,0,34,12);
     layout->addWidget(statistics,1,12,10,3);
@@ -26,11 +21,11 @@ MainWindow::MainWindow(QWidget *parent)
     layout->addWidget(settings,21,12,14,3);
     setLayout(layout);
     connect(settings->pauseButton,   &QPushButton::clicked, this,  &MainWindow::pauseLife);
-    connect(this,&MainWindow::paused,&model,&MainModel::pauseLife);
+    connect(this, &MainWindow::paused, model, &MainModel::pauseLife);
     graphicStart();
 }
 
-void MainWindow::graphicUpdate()// TODO: fix recursive repaint
+void MainWindow::graphicUpdate()
 {
    arena->update();
    upPanel->update();
@@ -46,7 +41,8 @@ void MainWindow::graphicStart() {
 void MainWindow::graphicStop() {
     timer->stop();
 }
+
 void MainWindow::pauseLife()
 {
-    model.pauseLife();
+    model->pauseLife();
 }

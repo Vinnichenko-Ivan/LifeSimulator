@@ -1,9 +1,8 @@
 #include "MainModel.h"
 
-MainModel::MainModel(QObject *parent): QObject(parent) {
+MainModel::MainModel( QObject *parent): QObject(parent){
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &MainModel::update);
-    addCreature(creatureGenerator.createRandomCreatures());
     start();
 }
 
@@ -38,7 +37,6 @@ void MainModel::oldingCreatures()
 
 void MainModel::update()
 {
-    //oldingCreatures();
     qDebug() << Q_FUNC_INFO;
     oldingCreatures();
 }
@@ -53,3 +51,4 @@ void  MainModel::pauseLife()
         onPause=1;
     }
 }
+

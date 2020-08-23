@@ -1,3 +1,4 @@
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -9,6 +10,13 @@
 #include <GUI/GeneratorsSettingWidget.h>
 #include <GUI/SettingWidget.h>
 #include <GUI/StatisticWidget.h>
+#include <GUI/StatisticWidget.h>
+#include <Generators/CreaturesGenerator.h>
+#include <QHBoxLayout>
+#include <QPainter>
+#include <QPen>
+#include <Qt>
+#include <QTimer>
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -23,7 +31,6 @@ public:
     void graphicStart();
     void graphicStop();
 private slots:
-    //void pauseButtonSlot();
     void pauseLife();
 public slots:
 
@@ -31,9 +38,8 @@ signals:
     void paused();
 
 private:
-
-    MainModel model;
-    bool onPauseSymbol=0;
+    CreaturesGenerator * creaturesGenerator;
+    MainModel * model;
     AreaWidget* arena;
     UpPanelWidget* upPanel;
     SettingWidget* settings;
@@ -43,3 +49,5 @@ private:
 
 };
 #endif // MAINWINDOW_H
+
+

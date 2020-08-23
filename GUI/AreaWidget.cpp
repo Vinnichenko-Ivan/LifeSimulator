@@ -11,7 +11,6 @@ void AreaWidget::Background()
     p.setColor(QPalette::Background, Qt::lightGray);
     setAutoFillBackground(true);
     setPalette(p);
-    render(this);
 }
 void AreaWidget::paintEvent(QPaintEvent *event)
 {

@@ -1,12 +1,38 @@
 #ifndef CREATURESGENERATOR_H
 #define CREATURESGENERATOR_H
-#include "../MainModel/entity/Creature.h"
 
-class CreaturesGenerator
+#include <QObject>
+#include "../MainModel/entity/Creature.h"
+#include "public/CreateCreature.h"
+
+class CreaturesGenerator : public QObject,
+        public CreateCreature
 {
+    Q_OBJECT
 public:
-    CreaturesGenerator();
-    Creature createRandomCreatures();
+    explicit CreaturesGenerator(QObject *parent = nullptr);
+
+signals:
+public:
+    virtual Creature createRandomCreature() override
+    {
+        Creature creature;
+        return creature;
+    }
+    virtual Creature createEmpertyCreature() override
+    {
+        Creature creature;
+        return creature;
+    }
+    virtual Creature createSettingCreature() override
+    {
+        Creature creature;
+        return creature;
+    }
+    virtual bool updateCreate() override
+    {
+        return 1;
+    }
 };
 
 #endif // CREATURESGENERATOR_H

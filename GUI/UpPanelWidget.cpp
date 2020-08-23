@@ -11,7 +11,6 @@ void UpPanelWidget::Background()
     p.setColor(QPalette::Background, Qt::green);
     setAutoFillBackground(true);
     setPalette(p);
-    render(this);
 }
 
 void UpPanelWidget::paintEvent(QPaintEvent *event)

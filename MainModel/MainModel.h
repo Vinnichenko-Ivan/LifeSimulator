@@ -5,7 +5,7 @@
 #include <QTimer>
 #include <QDebug>
 #include "entity/Creature.h"
-#include "../Generators/CreaturesGenerator.h"
+#include "../Generators/public/CreateCreature.h"
 
 class QTimer;
 
@@ -19,9 +19,8 @@ private:
     std::vector<Creature> creatures;
     std::vector<IOldingCreatures *> oldingCreaturesInterface;
     QTimer * timer;
-
+    CreateCreature * createCreature;
 public:       
-    CreaturesGenerator creatureGenerator;
     bool onPause=0;
     explicit MainModel(QObject * parent = nullptr);
     void addCreature(Creature newCreature);
