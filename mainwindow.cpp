@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent)
     layout->addWidget(generatoesSetting,11,12,10,3);
     layout->addWidget(settings,21,12,14,3);
     setLayout(layout);
+    connect(generatoesSetting->addCreatureButton,   &QPushButton::clicked, creaturesGenerator,  &CreaturesGenerator::addCreature);
     connect(settings->pauseButton,   &QPushButton::clicked, this,  &MainWindow::pauseLife);
     connect(this, &MainWindow::paused, model, &MainModel::pause);
     graphicStart();

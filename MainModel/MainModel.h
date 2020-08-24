@@ -2,7 +2,6 @@
 
 #include "entity/Creature.h"
 #include <QObject>
-
 #include <QVector>
 #include "entity/Creature.h"
 #include "Interface/CreateCreature.h"

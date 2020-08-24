@@ -32,7 +32,6 @@ public:
     void graphicStop();
 private slots:
     void pauseLife();
-public slots:
 
 signals:
     void paused();
