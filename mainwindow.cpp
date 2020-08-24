@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     layout->addWidget(settings,21,12,14,3);
     setLayout(layout);
     connect(settings->pauseButton,   &QPushButton::clicked, this,  &MainWindow::pauseLife);
-    connect(this, &MainWindow::paused, model, &MainModel::pauseLife);
+    connect(this, &MainWindow::paused, model, &MainModel::pause);
     graphicStart();
 }
 
@@ -44,5 +44,5 @@ void MainWindow::graphicStop() {
 
 void MainWindow::pauseLife()
 {
-    model->pauseLife();
+    model->pause();
 }

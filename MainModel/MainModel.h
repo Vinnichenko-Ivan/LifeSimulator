@@ -3,7 +3,7 @@
 #include "entity/Creature.h"
 #include <QObject>
 
-#include <vector>
+#include <QVector>
 #include "entity/Creature.h"
 #include "Interface/CreateCreature.h"
 #include "../Generators/public/CreateCreature.h"
@@ -18,19 +18,17 @@ class MainModel: public QObject,
 public:
     explicit MainModel(QObject * parent = nullptr);
 
-    virtual void addNewCreature(Creature creature) override;
-    virtual void addNewCreatures(std::vector<Creature> creatures) override;
+    virtual void addNewCreature(Creature * creature) override;
 
-    void pauseLife();
-    void addCreature(Creature newCreature);
+    void pause();
     void start();
     void stop();
     void update();
     void oldingCreatures();
 
 private:
-    std::vector<Creature> creatures;
-    std::vector<IOldingCreatures *> oldingCreaturesInterface;
+    QVector<Creature*> creatures;
+    QVector<IOldingCreatures *> oldingCreaturesInterface;
     QTimer * timer;
     CreateCreature * createCreature;    
     bool isPaused=false;

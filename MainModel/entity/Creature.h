@@ -5,19 +5,20 @@
 
 class Creature: public IOldingCreatures
 {
+public:
+    Creature(int id): id(id) {}
 
-    public:
-        int id;
-        Cordinate cordinate;
-        long long int age=0;
-        virtual void update() override
-        {
-            age++;
-            qDebug()<<"my age: "<<age<< " my_id: "<<id;
-        }
-        virtual bool is_dead() const override
-        {
-            return false;
-        }
+    int id;
+    Cordinate cordinate;
+    long long int age=0;
+    virtual void update() override
+    {
+        age++;
+        qDebug()<<"my age: "<<age<< " my_id: "<<id;
+    }
+    virtual bool is_dead() const override
+    {
+        return false;
+    }
 };
 

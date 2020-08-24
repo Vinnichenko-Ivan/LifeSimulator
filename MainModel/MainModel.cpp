@@ -5,18 +5,10 @@
 
 #include "entity/public/IOldingCreatures.h"
 
-void MainModel::addNewCreature(Creature creature)
+void MainModel::addNewCreature(Creature * creature)
 {
-    addCreature(creature);
-}
-
-void MainModel::addNewCreatures(std::vector<Creature> creatures)
-{
-    qDebug()<<"addNewCreatures";
-    for(Creature some: creatures)
-    {
-        addCreature(some);
-    }
+    creatures.push_back(creature);
+    oldingCreaturesInterface.push_back(creature);
 }
 
 MainModel::MainModel( QObject *parent): QObject(parent){
@@ -25,11 +17,6 @@ MainModel::MainModel( QObject *parent): QObject(parent){
     start();
 }
 
-void MainModel::addCreature(Creature newCreature)
-{
-    creatures.push_back(newCreature);    
-    oldingCreaturesInterface.push_back(&creatures[creatures.size()-1]);
-}
 
 void MainModel::start() {
     timer->start(1000 / 24);
@@ -59,7 +46,7 @@ void MainModel::update()
     oldingCreatures();
 }
 
-void  MainModel::pauseLife()
+void  MainModel::pause()
 {
     isPaused = !isPaused;
 }

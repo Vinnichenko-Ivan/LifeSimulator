@@ -4,10 +4,7 @@ CreaturesGenerator::CreaturesGenerator(CreateCreature * createCreatureIn,QObject
 {
     createCreature=createCreatureIn;
     std::vector<Creature> creatures;
-    Creature creature1;
-    creature1.id=1;
-    Creature creature2;
-    creature2.id=2;
-    createCreature->addNewCreature(creature1);
-    createCreature->addNewCreature(creature2);
+
+    createCreature->addNewCreature(new Creature(1));
+    createCreature->addNewCreature(new Creature(2));
 }
