@@ -23,5 +23,4 @@ void GeneratorsSettingWidget::paintEvent(QPaintEvent *event)
 
 void GeneratorsSettingWidget::addCreatureSlot()
 {
-
 }
