@@ -1,9 +1,9 @@
-
 #pragma once
 #include <QDebug>
 #include "public/IOldingCreatures.h"
 #include "struct/Cordinate.h"
-class Creature:public IOldingCreatures
+
+class Creature: public IOldingCreatures
 {
 
     public:
@@ -15,7 +15,7 @@ class Creature:public IOldingCreatures
             age++;
             qDebug()<<"my age: "<<age<< " my_id: "<<id;
         }
-        virtual bool is_dead()const override
+        virtual bool is_dead() const override
         {
             return false;
         }

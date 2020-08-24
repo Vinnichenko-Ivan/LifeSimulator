@@ -1,5 +1,24 @@
 #include "MainModel.h"
 
+#include <QTimer>
+#include <QDebug>
+
+#include "entity/public/IOldingCreatures.h"
+
+void MainModel::addNewCreature(Creature creature)
+{
+    addCreature(creature);
+}
+
+void MainModel::addNewCreatures(std::vector<Creature> creatures)
+{
+    qDebug()<<"addNewCreatures";
+    for(Creature some: creatures)
+    {
+        addCreature(some);
+    }
+}
+
 MainModel::MainModel( QObject *parent): QObject(parent){
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &MainModel::update);
@@ -8,7 +27,7 @@ MainModel::MainModel( QObject *parent): QObject(parent){
 
 void MainModel::addCreature(Creature newCreature)
 {
-    creatures.push_back(newCreature);
+    creatures.push_back(newCreature);    
     oldingCreaturesInterface.push_back(&creatures[creatures.size()-1]);
 }
 
@@ -22,35 +41,26 @@ void MainModel::stop() {
 
 void MainModel::oldingCreatures()
 {
-    if(onPause)
+    if(isPaused)
     {
 
     }
     else
     {
-        qDebug()<<"i old: "<<oldingCreaturesInterface.size()<< " creatures";
-        oldingCreaturesInterface[0]->update();
-//        for(auto n :oldingCreaturesInterface)
-//        {
-//            n->update();
-//        }
+        for(auto * n : oldingCreaturesInterface)
+        {
+            n->update();
+        }
     }
 }
 
 void MainModel::update()
 {
-    qDebug() << Q_FUNC_INFO;
     oldingCreatures();
 }
+
 void  MainModel::pauseLife()
 {
-    if(onPause)
-    {
-        onPause=0;
-    }
-    else
-    {
-        onPause=1;
-    }
+    isPaused = !isPaused;
 }
 
