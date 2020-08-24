@@ -4,17 +4,32 @@
 #include <QObject>
 #include <QTimer>
 #include <QDebug>
+#include <vector>
 #include "entity/Creature.h"
+#include "Interface/CreateCreature.h"
 #include "../Generators/public/CreateCreature.h"
 
 class QTimer;
 
 class IOldingCreatures;
 
-class MainModel: public QObject
+class MainModel: public QObject,
+        public CreateCreature
 {
     Q_OBJECT
-
+    virtual void addNewCreature(Creature creature) override
+    {
+        qDebug()<<"addNewCreature";
+        addCreature(creature);
+    }
+    virtual void addNewCreatures(std::vector<Creature> creatures) override
+    {
+        qDebug()<<"addNewCreatures";
+        for(Creature some:creatures)
+        {
+            addCreature(some);
+        }
+    }
 private:
     std::vector<Creature> creatures;
     std::vector<IOldingCreatures *> oldingCreaturesInterface;

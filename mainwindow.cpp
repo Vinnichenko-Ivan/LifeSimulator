@@ -4,8 +4,8 @@
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
 {
-    creaturesGenerator = new CreaturesGenerator(this);
-    model = new MainModel(creaturesGenerator);
+    model = new MainModel(this);
+    creaturesGenerator = new CreaturesGenerator(model,this);
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &MainWindow::graphicUpdate);
     arena=new AreaWidget(this);

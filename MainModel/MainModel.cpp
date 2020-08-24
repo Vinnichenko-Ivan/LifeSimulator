@@ -28,10 +28,12 @@ void MainModel::oldingCreatures()
     }
     else
     {
-        for(auto * n : oldingCreaturesInterface)
-        {
-            n->update();
-        }
+        qDebug()<<"i old: "<<oldingCreaturesInterface.size()<< " creatures";
+        oldingCreaturesInterface[0]->update();
+//        for(auto n :oldingCreaturesInterface)
+//        {
+//            n->update();
+//        }
     }
 }
 
