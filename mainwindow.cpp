@@ -4,11 +4,12 @@
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
 {
+    srand ( time(NULL) );
     model = new MainModel(this);
     creaturesGenerator = new CreaturesGenerator(model,this);
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &MainWindow::graphicUpdate);
-    arena=new AreaWidget(this);
+    arena=new AreaWidget(model,this);
     upPanel= new UpPanelWidget(this);
     settings= new SettingWidget(this);
     statistics=new StatisticWidget(this);
@@ -21,8 +22,8 @@ MainWindow::MainWindow(QWidget *parent)
     layout->addWidget(settings,21,12,14,3);
     setLayout(layout);
     connect(generatoesSetting->addCreatureButton,   &QPushButton::clicked, creaturesGenerator,  &CreaturesGenerator::addCreature);
-    connect(settings->pauseButton,   &QPushButton::clicked, this,  &MainWindow::pauseLife);
-    connect(this, &MainWindow::paused, model, &MainModel::pause);
+    connect(settings->pauseButton,   &QPushButton::clicked, model,  &MainModel::pause);
+   // connect(this, &MainWindow::paused, model, &MainModel::pause);
     graphicStart();
 }
 
@@ -41,9 +42,4 @@ void MainWindow::graphicStart() {
 
 void MainWindow::graphicStop() {
     timer->stop();
-}
-
-void MainWindow::pauseLife()
-{
-    model->pause();
 }

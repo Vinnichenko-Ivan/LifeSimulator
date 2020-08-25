@@ -3,7 +3,7 @@
 GeneratorsSettingWidget::GeneratorsSettingWidget(QWidget *parent) : QWidget(parent)
 {
     layout = new QGridLayout();
-    addCreatureButton = new QPushButton("add");
+    addCreatureButton = new QPushButton("add creature");
     connect(addCreatureButton,   &QPushButton::clicked, this,  &GeneratorsSettingWidget::addCreatureSlot);
     layout->addWidget(addCreatureButton,0,0);
     setLayout(layout);
@@ -23,4 +23,5 @@ void GeneratorsSettingWidget::paintEvent(QPaintEvent *event)
 
 void GeneratorsSettingWidget::addCreatureSlot()
 {
+
 }

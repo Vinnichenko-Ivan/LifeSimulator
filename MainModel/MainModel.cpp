@@ -1,14 +1,22 @@
 #include "MainModel.h"
 
-#include <QTimer>
-#include <QDebug>
-
-#include "entity/public/IOldingCreatures.h"
-
-void MainModel::addNewCreature(Creature * creature)
+void MainModel::addNewCreature(Creature * creature,Cordinate * cordinate)
 {
     creatures.push_back(creature);
     oldingCreaturesInterface.push_back(creature);
+    cordinates.push_back(cordinate);
+}
+
+void MainModel::updateArenaSize(int wightNew,int heightNew)
+{
+    wight=wightNew;
+    height=heightNew;
+    recountCordinate();
+}
+
+std::pair<int,int> MainModel::getSizeArena()
+{
+   return std::pair<int,int>(wight,height);
 }
 
 MainModel::MainModel( QObject *parent): QObject(parent){
@@ -51,3 +59,11 @@ void  MainModel::pause()
     isPaused = !isPaused;
 }
 
+void MainModel::recountCordinate()
+{
+    for(auto*n:cordinates)
+    {
+        n->x=std::min(n->x,wight-10);
+        n->y=std::min(n->y,height-10);
+    }
+}
