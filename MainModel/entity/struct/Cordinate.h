@@ -2,12 +2,12 @@
 #define CORDINATE_H
 struct Cordinate
 {
-    Cordinate(int xIn=0,int yIn=0)
+    Cordinate(double xIn=0,double yIn=0)
     {
         x=xIn;
         y=yIn;
     }
-    int x,y;
-    int angel;
+    double x,y;
+    double angel;
 };
 #endif // CORDINATE_H

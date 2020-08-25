@@ -1,5 +1,6 @@
 #pragma once
 #include <algorithm>
+#include <math.h>
 #include <QTimer>
 #include <QDebug>
 #include <QObject>
@@ -9,7 +10,9 @@
 #include "public/ArenaGraphic.h"
 #include "../Generators/public/CreateCreature.h"
 #include "entity/struct/Cordinate.h"
+#include "entity/struct/Path.h"
 #include "entity/public/IOldingCreatures.h"
+#include "entity/public/IDoingCreatures.h"
 #include "entity/Creature.h"
 
 class QTimer;
@@ -32,9 +35,11 @@ public:
     void update();
     void oldingCreatures();
     void recountCordinate();
+    void goToNewCordinate(Cordinate * oldCordinate,Path path);
     QVector<Creature*> creatures;
     QVector<IOldingCreatures *> oldingCreaturesInterface;
     QVector<Cordinate *> cordinates;
+    QVector<IDoingCreatures *> doings;
 
 private: 
     QTimer * timer;
