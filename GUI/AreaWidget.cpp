@@ -35,7 +35,8 @@ void AreaWidget::paintCreature(int x,int y)
     QPainter painter(this);
     painter.setPen(QPen(Qt::black, 1, Qt::SolidLine, Qt::FlatCap));
     painter.setBrush(QBrush(Qt::red, Qt::SolidPattern));
-    painter.drawEllipse(x, y, 10, 10);
+    painter.drawEllipse(x-5, y-5, 10, 10);
+    painter.drawPoint(x,y);
 }
 
 void AreaWidget::paintFood(int x,int y)
