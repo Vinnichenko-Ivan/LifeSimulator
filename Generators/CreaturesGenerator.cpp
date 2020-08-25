@@ -7,14 +7,13 @@ CreaturesGenerator::CreaturesGenerator(CreateCreature * createCreatureIn,QObject
 
 void CreaturesGenerator::updateSizeArena()
 {
-    std::pair<int,int> size = createCreature->getSizeArena();
+    std::pair<int,int> size = createCreature->getSizeArenaForCreatures();
     wight=size.first;
     height=size.second;
 }
 
 void CreaturesGenerator::addCreature()
 {
-
     Creature * creature=new Creature(id);
     updateSizeArena();
     int x=rand()%wight;

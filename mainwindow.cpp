@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
     srand ( time(NULL) );
     model = new MainModel(this);
     creaturesGenerator = new CreaturesGenerator(model,this);
+    foodGenerator = new FoodGenerator(model,this);
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &MainWindow::graphicUpdate);
     arena=new AreaWidget(model,this);
@@ -22,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
     layout->addWidget(settings,21,12,14,3);
     setLayout(layout);
     connect(generatoesSetting->addCreatureButton,   &QPushButton::clicked, creaturesGenerator,  &CreaturesGenerator::addCreature);
+    connect(generatoesSetting->addFoodButton,   &QPushButton::clicked, foodGenerator,  &FoodGenerator::addFood);
     connect(settings->pauseButton,   &QPushButton::clicked, model,  &MainModel::pause);
    // connect(this, &MainWindow::paused, model, &MainModel::pause);
     graphicStart();

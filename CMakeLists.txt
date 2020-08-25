@@ -53,6 +53,8 @@ else()
     GUI/StatisticWidget.cpp
     Generators/CreaturesGenerator.h
     Generators/CreaturesGenerator.cpp
+    Generators/FoodGenerator.h
+    Generators/FoodGenerator.cpp
   )
 endif()
 

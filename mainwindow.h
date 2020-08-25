@@ -12,6 +12,7 @@
 #include <GUI/StatisticWidget.h>
 #include <GUI/StatisticWidget.h>
 #include <Generators/CreaturesGenerator.h>
+#include <Generators/FoodGenerator.h>
 #include <QHBoxLayout>
 #include <QPainter>
 #include <QPen>
@@ -37,6 +38,7 @@ signals:
 
 private:
     CreaturesGenerator * creaturesGenerator;
+    FoodGenerator * foodGenerator;
     MainModel * model;
     AreaWidget* arena;
     UpPanelWidget* upPanel;

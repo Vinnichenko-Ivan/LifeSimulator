@@ -1,6 +1,6 @@
 #ifndef AREAWIDGET_H
 #define AREAWIDGET_H
-
+#include <QColor>
 #include <QWidget>
 #include <QPainter>
 #include <QPalette>
@@ -14,6 +14,7 @@ class AreaWidget : public QWidget
 private:
     MainModel * model;
     void paintCreature(int x,int y);
+    void paintFood(int x,int y);
 public:
     explicit AreaWidget(MainModel * modelIn, QWidget *parent = nullptr);
     void paintEvent(QPaintEvent * event) override;

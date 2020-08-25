@@ -2,7 +2,6 @@
 #include <QDebug>
 #include "public/IOldingCreatures.h"
 #include "public/IDoingCreatures.h"
-#include "struct/Cordinate.h"
 #include "struct/Path.h"
 class Creature: public IOldingCreatures,
         public IDoingCreatures
@@ -11,15 +10,18 @@ public:
     Creature(int id): id(id) {}
     int angle=0;
     int id;
-    Cordinate cordinate;
     long long int age=0;
     virtual void update() override
     {
         age++;
         qDebug()<<"my age: "<<age<< " my_id: "<<id;
     }
-    virtual bool is_dead() const override
+    virtual bool isDead() const override
     {
+        if(age>180)
+        {
+            return true;
+        }
         return false;
     }
 

@@ -14,8 +14,10 @@ public:
     void paintEvent(QPaintEvent * event) override;
     void Background();
     QPushButton * addCreatureButton;
+    QPushButton * addFoodButton;
     QGridLayout * layout;
     void addCreatureSlot();
+    void addFoodSlot();
 signals:
     void addCreature();
 };

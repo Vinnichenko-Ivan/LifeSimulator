@@ -20,11 +20,14 @@ void AreaWidget::paintEvent(QPaintEvent *event)
     wight=geometry().width();
     height=geometry().height();
     modelGraphic->updateArenaSize(wight,height);
-    for(auto * n:model->cordinates)
+    for(auto * n:model->cordinatesCreatures)
     {
         paintCreature(n->x,n->y);
     }
-    qDebug()<<wight<<" "<<height;
+    for(auto * n:model->cordinatesFoods)
+    {
+        paintFood(n->x,n->y);
+    }
 }
 
 void AreaWidget::paintCreature(int x,int y)
@@ -33,4 +36,12 @@ void AreaWidget::paintCreature(int x,int y)
     painter.setPen(QPen(Qt::black, 1, Qt::SolidLine, Qt::FlatCap));
     painter.setBrush(QBrush(Qt::red, Qt::SolidPattern));
     painter.drawEllipse(x, y, 10, 10);
+}
+
+void AreaWidget::paintFood(int x,int y)
+{
+    QPainter painter(this);
+    painter.setPen(QPen(QColor(102,95,69), 0, Qt::SolidLine, Qt::FlatCap));
+    painter.setBrush(QBrush(QColor(102,95,69), Qt::SolidPattern));
+    painter.drawPoint(x,y);
 }
