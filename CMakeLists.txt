@@ -55,6 +55,7 @@ else()
     Generators/CreaturesGenerator.cpp
     Generators/FoodGenerator.h
     Generators/FoodGenerator.cpp
+    .gitignore
   )
 endif()
 
