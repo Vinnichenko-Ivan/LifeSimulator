@@ -1,6 +1,5 @@
 #ifndef IOLDINGFOOD_H
 #define IOLDINGFOOD_H
-#pragma once
 
 class IOldingFood
 {
