@@ -71,6 +71,8 @@ void MainModel::recountCordinate()
     {
         n->x=std::min(n->x,(double)wight-10);
         n->y=std::min(n->y,(double)height-10);
+        n->x=std::max(n->x,(double)0);
+        n->y=std::max(n->y,(double)0);
     }
 }
 void MainModel::goToNewCordinate(Cordinate * oldCordinate,Path path)
