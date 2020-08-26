@@ -40,6 +40,7 @@ public:
     void oldingCreatures();
     void goingCreatures();
     void recountCordinate();
+    void recountFoodCordinate();
     void goToNewCordinate(Cordinate * oldCordinate,Path path);
     void killCreatures(int number);
     void killFood(int number);

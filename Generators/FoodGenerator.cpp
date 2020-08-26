@@ -3,7 +3,9 @@
 
 FoodGenerator::FoodGenerator(CreateFood * createFoodIn,QObject *parent) : QObject(parent)
 {
+    foodTimer = new QTimer();
     createFood=createFoodIn;
+    connect(foodTimer, &QTimer::timeout, this, &FoodGenerator::addFood);
 }
 
 void FoodGenerator::updateSizeArena()
@@ -23,4 +25,39 @@ void FoodGenerator::addFood()
     qDebug()<<"add Food with id: "<<id<< "cordinates x:"<<x<<" y:"<<y;
     createFood->addNewFood(food,cordinate);
     id++;
+}
+
+void FoodGenerator::setPeriod(int periodIn)
+{
+    period=periodIn;
+    start();
+}
+
+void FoodGenerator::start()
+{
+    if(pauseFlag==false&&period != 0)
+    {
+       foodTimer->start(1000/period);
+    }
+    else
+    {
+        foodTimer->stop();
+    }
+}
+void FoodGenerator::stop()
+{
+    foodTimer->stop();
+}
+void FoodGenerator::pause()
+{
+
+    if(pauseFlag)
+    {
+       stop();
+    }
+    else
+    {
+        start();
+    }
+    pauseFlag=!pauseFlag;
 }

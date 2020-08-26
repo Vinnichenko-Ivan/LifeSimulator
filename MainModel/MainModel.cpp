@@ -105,6 +105,16 @@ void MainModel::recountCordinate()
         n->y=std::max(n->y,(double)0);
     }
 }
+void MainModel::recountFoodCordinate()
+{
+    for(auto*n:cordinatesFoods)
+    {
+        n->x=std::min(n->x,(double)wight);
+        n->y=std::min(n->y,(double)height);
+        n->x=std::max(n->x,(double)0);
+        n->y=std::max(n->y,(double)0);
+    }
+}
 void MainModel::goToNewCordinate(Cordinate * oldCordinate,Path path)
 {
     oldCordinate->x+=std::sin( (double)path.angle * PI / (double)180)*path.path;

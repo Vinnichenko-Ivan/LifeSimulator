@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     upPanel= new UpPanelWidget(this);
     settings= new SettingWidget(this);
     statistics=new StatisticWidget(this);
-    generatoesSetting=new GeneratorsSettingWidget(this);
+    generatoesSetting=new GeneratorsSettingWidget(foodGenerator,this);
     QGridLayout * layout = new QGridLayout(this);//15 на 35
     layout->addWidget(upPanel,0,0,1,15);
     layout->addWidget(arena,1,0,34,12);
@@ -25,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(generatoesSetting->addCreatureButton,   &QPushButton::clicked, creaturesGenerator,  &CreaturesGenerator::addCreature);
     connect(generatoesSetting->addFoodButton,   &QPushButton::clicked, foodGenerator,  &FoodGenerator::addFood);
     connect(settings->pauseButton,   &QPushButton::clicked, model,  &MainModel::pause);
+    connect(settings->pauseButton,   &QPushButton::clicked, foodGenerator,  &FoodGenerator::pause);
    // connect(this, &MainWindow::paused, model, &MainModel::pause);
     graphicStart();
 }
