@@ -5,6 +5,7 @@
 #include <QPainter>
 #include <QPalette>
 #include <QDebug>
+#include <QImage>
 #include "../MainModel/MainModel.h"
 #include "../MainModel/public/ArenaGraphic.h"
 #include "../MainModel/entity/struct/Cordinate.h"
@@ -20,7 +21,9 @@ public:
     void paintEvent(QPaintEvent * event) override;
     void Background();
     int wight, height;
+    QPainter * painter;
     ArenaGraphic* modelGraphic;
+    QPixmap  creaturesTexture;
 signals:
 
 };
