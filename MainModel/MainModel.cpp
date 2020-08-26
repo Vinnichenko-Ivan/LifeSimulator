@@ -99,10 +99,10 @@ void MainModel::recountCordinate()
 {
     for(auto*n:cordinatesCreatures)
     {
-        n->x=std::min(n->x,(double)wight-5);
-        n->y=std::min(n->y,(double)height-5);
-        n->x=std::max(n->x,(double)-5);
-        n->y=std::max(n->y,(double)-5);
+        n->x=std::min(n->x,(double)wight);
+        n->y=std::min(n->y,(double)height);
+        n->x=std::max(n->x,(double)0);
+        n->y=std::max(n->y,(double)0);
     }
 }
 void MainModel::goToNewCordinate(Cordinate * oldCordinate,Path path)
