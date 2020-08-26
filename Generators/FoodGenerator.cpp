@@ -1,5 +1,5 @@
 #include "FoodGenerator.h"
-
+#include <QDebug>
 
 FoodGenerator::FoodGenerator(CreateFood * createFoodIn,QObject *parent) : QObject(parent)
 {
