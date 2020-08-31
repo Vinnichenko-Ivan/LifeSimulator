@@ -1,11 +1,12 @@
 #include "MainModel.h"
 #define PI 3.14159265
-void MainModel::addNewCreature(Creature * creature,Cordinate * cordinate)
+void MainModel::addNewCreature(Creature * creature,Cordinate * cordinate,Condithions* condithions)
 {
     creatures.push_back(creature);
     oldingCreaturesInterface.push_back(creature);
     doings.push_back(creature);
     cordinatesCreatures.push_back(cordinate);
+    condithionsCreature.push_back(condithions);
 }
 
 void MainModel::addNewFood(Food * food, Cordinate * cordinate)
@@ -54,16 +55,21 @@ void MainModel::oldingCreatures()
     }
     else
     {
-        for(int i=0;i<oldingCreaturesInterface.size();i++)
+        for(auto * n : condithionsCreature)
         {
-            if(oldingCreaturesInterface[i]->isDead())
+            n->update();
+        }
+        for(int i=0;i<condithionsCreature.size();i++)
+        {
+            if(condithionsCreature[i]->isDead())
             {
                 killCreatures(i);
             }
         }
-        for(auto * n : oldingCreaturesInterface)
+
+        for(int i=0;i<creatures.size();i++)
         {
-            n->update();
+            creatures[i]->update(*condithionsCreature[i]);
         }
     }
 }
@@ -115,21 +121,40 @@ void MainModel::recountFoodCordinate()
         n->y=std::max(n->y,(double)0);
     }
 }
+
 void MainModel::goToNewCordinate(Cordinate * oldCordinate,Path path)
 {
     oldCordinate->x+=std::sin( (double)path.angle * PI / (double)180)*path.path;
     oldCordinate->y+=std::cos( (double)path.angle * PI / (double)180)*path.path;
+    oldCordinate->angle= (double)path.angle;
 }
+
+double MainModel::getAngleToCord(Cordinate* myCord, Cordinate* targetCord)
+{
+    
+}
+
+double MainModel::getLenghtToCord(Cordinate* myCord, Cordinate* targetCord)
+{
+    return sqrt((myCord->x-targetCord->x)*(myCord->x-targetCord->x)+(myCord->y-targetCord->y)*(myCord->y-targetCord->y));
+}
+
 void MainModel::killCreatures(int number)
 {
+    delete creatures[number];
+    delete cordinatesCreatures[number];
+    delete condithionsCreature[number];
     creatures.erase(creatures.begin()+number);
     oldingCreaturesInterface.erase(oldingCreaturesInterface.begin()+number);
     doings.erase(doings.begin()+number);
     cordinatesCreatures.erase(cordinatesCreatures.begin()+number);
+    condithionsCreature.erase(condithionsCreature.begin()+number);
 }
 
 void MainModel::killFood(int number)
 {
+    delete foods[number];
+    delete cordinatesFoods[number];
     foods.erase(foods.begin()+number);
     oldingFoodInterface.erase(oldingFoodInterface.begin()+number);
     cordinatesFoods.erase(cordinatesFoods.begin()+number);

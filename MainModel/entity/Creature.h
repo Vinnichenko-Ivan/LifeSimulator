@@ -1,33 +1,41 @@
 #pragma once
 #include <QDebug>
+#include <QVector>
+#include<vector>
 #include "public/IOldingCreatures.h"
 #include "public/IDoingCreatures.h"
+#include "public/IVisionCreatures.h"
 #include "struct/Path.h"
+#include "struct/Condithions.h"
+#include "struct/VisiableEntity.h"
+class Condithions;
 class Creature: public IOldingCreatures,
-        public IDoingCreatures
+        public IDoingCreatures,
+        public IVisionCreatures
 {
 public:
-    Creature(int id): id(id) {}
-    int angle=0;
+    Condithions condithions = Condithions(0);
+    std::vector<VisiableEntity> vision;
     int id;
-    long long int age=0;
-    virtual void update() override
-    {
-        age++;
-        qDebug()<<"my age: "<<age<< " my_id: "<<id;
+    int angle=0;
+    Creature(Condithions condithionsIn): id(id) {
+        condithions=condithionsIn;
+        id=condithions.id;
     }
-    virtual bool isDead() const override
+    ~Creature()
     {
-        if(age>180)
-        {
-            return true;
-        }
-        return false;
+    }
+    virtual void visionUpdate(std::vector<VisiableEntity>visionIn) override
+    {
+        vision=visionIn;
+    }
+    virtual void update(Condithions condithionsIn) override
+    {
+        condithions=condithionsIn;
     }
 
     virtual Path going() override
     {
-        qDebug()<<"i Go "<<1<<"my angle:"<<angle << " my_id: "<<id;
         angle=(angle+5)%360;
         return Path(1,angle);
     }

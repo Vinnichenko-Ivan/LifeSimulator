@@ -7,6 +7,8 @@
 #include "../MainModel/public/CreateCreature.h"
 #include "../MainModel/entity/Creature.h"
 #include "../MainModel/entity/struct/Cordinate.h"
+#include "../MainModel/entity/struct/Condithions.h"
+
 
 class CreaturesGenerator : public QObject
 

@@ -1,9 +1,8 @@
 #pragma once
-
+class Condithions;
 class IOldingCreatures
 {
 public:
-    virtual void update()=0;
-    virtual bool isDead() const=0;
+    virtual void update(Condithions condithionsIn)=0;
     virtual ~IOldingCreatures(){}
 };

@@ -1,10 +1,10 @@
 #include "AreaWidget.h"
-
+#define PI 3.14159265
 AreaWidget::AreaWidget(MainModel * modelIn,QWidget *parent) : QWidget(parent)
 {
     model=modelIn;
     modelGraphic=modelIn;
-    creaturesTexture =  QPixmap("texture/Untitled.bmp");
+    creaturesTexture =  QPixmap("/home/enigma/programming/qt/lifeSimulator/lifeSimulator/GUI/texture/Untitled.bmp");
 }
 void AreaWidget::Background()
 {
@@ -23,7 +23,7 @@ void AreaWidget::paintEvent(QPaintEvent *event)
     modelGraphic->updateArenaSize(wight,height);
     for(auto * n:model->cordinatesCreatures)
     {
-        paintCreature(n->x,n->y);
+        paintCreature(n->x,n->y,n->angle);
     }
     for(auto * n:model->cordinatesFoods)
     {
@@ -32,12 +32,21 @@ void AreaWidget::paintEvent(QPaintEvent *event)
     painter->end();
 }
 
-void AreaWidget::paintCreature(int x,int y)
+void AreaWidget::paintCreature(double x,double y,double angle)
 {
-    painter->drawPixmap(x-5, y-5, creaturesTexture );
+    //painter->drawPixmap(x-4, y-6, creaturesTexture );
     painter->setPen(QPen(Qt::black, 1, Qt::SolidLine, Qt::FlatCap));
     painter->setBrush(QBrush(Qt::red, Qt::SolidPattern));
-    painter->drawPixmap(x-5, y-5, creaturesTexture );
+    //painter->translate(4,6);
+    int helpX=-4,helpY=-6;
+    angle=(int)(360+180-angle)%360;
+    double angleRad=angle* PI / (double)180;
+    double newX=(x)*std::cos(angleRad)+(y)*std::sin(angleRad)+helpX;//+((2)*std::cos(angleRad)+(2)*std::sin(angleRad));
+    double newY= (-x)*std::sin(angleRad)+(y)*std::cos(angleRad)+helpY;//-((3)*std::cos(angleRad)+(3)*std::sin(angleRad));
+    painter->rotate(angle);
+    painter->drawPixmap(newX, newY ,creaturesTexture );
+    painter->rotate(-angle);
+    //painter->translate(-4,-6);
     painter->drawPoint(x,y);
 }
 

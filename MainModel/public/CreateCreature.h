@@ -3,10 +3,11 @@
 
 class Creature;
 class Cordinate;
+class Condithions;
 class CreateCreature
 {
 public:
-    virtual void addNewCreature(Creature * creature, Cordinate * cordinate)=0;
+    virtual void addNewCreature(Creature * creature, Cordinate * cordinate, Condithions* condithions)=0;
     virtual std::pair<int,int> getSizeArenaForCreatures()=0;
 };
 #endif // CREATECREATURE_H

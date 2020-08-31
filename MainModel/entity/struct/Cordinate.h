@@ -8,6 +8,6 @@ struct Cordinate
         y=yIn;
     }
     double x,y;
-    double angel;
+    double angle;
 };
 #endif // CORDINATE_H

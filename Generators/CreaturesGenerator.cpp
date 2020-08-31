@@ -14,12 +14,13 @@ void CreaturesGenerator::updateSizeArena()
 
 void CreaturesGenerator::addCreature()
 {
-    Creature * creature=new Creature(id);
+    Condithions * condithions = new Condithions(id);
+    Creature * creature=new Creature(*condithions);
     updateSizeArena();
     int x=rand()%wight;
     int y=rand()%height;
     Cordinate * cordinate= new Cordinate(x,y);
     qDebug()<<"add Creature with id: "<<id<< "cordinates x:"<<x<<" y:"<<y;
-    createCreature->addNewCreature(creature,cordinate);
+    createCreature->addNewCreature(creature,cordinate,condithions);
     id++;
 }

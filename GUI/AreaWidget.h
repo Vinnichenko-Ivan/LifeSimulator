@@ -6,6 +6,7 @@
 #include <QPalette>
 #include <QDebug>
 #include <QImage>
+#include <math.h>
 #include "../MainModel/MainModel.h"
 #include "../MainModel/public/ArenaGraphic.h"
 #include "../MainModel/entity/struct/Cordinate.h"
@@ -14,7 +15,7 @@ class AreaWidget : public QWidget
     Q_OBJECT
 private:
     MainModel * model;
-    void paintCreature(int x,int y);
+    void paintCreature(double x,double y,double angle);
     void paintFood(int x,int y);
 public:
     explicit AreaWidget(MainModel * modelIn, QWidget *parent = nullptr);
