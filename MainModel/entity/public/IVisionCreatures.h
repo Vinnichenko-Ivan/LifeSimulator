@@ -5,6 +5,7 @@ class VisiableEntity;
 class IVisionCreatures
 {
     public:
-        virtual void visionUpdate(std::vector<VisiableEntity> visionIn)=0;
+        virtual void visionCreaturesUpdate(std::vector<VisiableEntity>visionCreaturesIn)=0;
+        virtual void visionFoodsUpdate(std::vector<VisiableEntity>visionFoodsIn)=0;
 };
 #endif // IVISIONCREATURES_H

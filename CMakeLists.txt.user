@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.13.0, 2020-08-31T09:43:58. -->
+<!-- Written by QtCreator 4.13.0, 2020-08-31T21:23:52. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -92,7 +92,8 @@
    <value type="int" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
    <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.0">
-    <value type="QString" key="CMake.Initial.Parameters">-DQT_QMAKE_EXECUTABLE:STRING=%{Qt:qmakeExecutable}
+    <value type="QString" key="CMake.Initial.Parameters">-GCodeBlocks - Unix Makefiles
+-DQT_QMAKE_EXECUTABLE:STRING=%{Qt:qmakeExecutable}
 -DCMAKE_PREFIX_PATH:STRING=%{Qt:QT_INSTALL_PREFIX}
 -DCMAKE_C_COMPILER:STRING=%{Compiler:Executable:C}
 -DCMAKE_CXX_COMPILER:STRING=%{Compiler:Executable:Cxx}
@@ -141,7 +142,8 @@
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.CMakeBuildConfiguration</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.1">
-    <value type="QString" key="CMake.Initial.Parameters">-DQT_QMAKE_EXECUTABLE:STRING=%{Qt:qmakeExecutable}
+    <value type="QString" key="CMake.Initial.Parameters">-GCodeBlocks - Unix Makefiles
+-DQT_QMAKE_EXECUTABLE:STRING=%{Qt:qmakeExecutable}
 -DCMAKE_PREFIX_PATH:STRING=%{Qt:QT_INSTALL_PREFIX}
 -DCMAKE_C_COMPILER:STRING=%{Compiler:Executable:C}
 -DCMAKE_CXX_COMPILER:STRING=%{Compiler:Executable:Cxx}
@@ -190,7 +192,8 @@
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.CMakeBuildConfiguration</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.2">
-    <value type="QString" key="CMake.Initial.Parameters">-DQT_QMAKE_EXECUTABLE:STRING=%{Qt:qmakeExecutable}
+    <value type="QString" key="CMake.Initial.Parameters">-GCodeBlocks - Unix Makefiles
+-DQT_QMAKE_EXECUTABLE:STRING=%{Qt:qmakeExecutable}
 -DCMAKE_PREFIX_PATH:STRING=%{Qt:QT_INSTALL_PREFIX}
 -DCMAKE_C_COMPILER:STRING=%{Compiler:Executable:C}
 -DCMAKE_CXX_COMPILER:STRING=%{Compiler:Executable:Cxx}
@@ -239,7 +242,8 @@
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.CMakeBuildConfiguration</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.3">
-    <value type="QString" key="CMake.Initial.Parameters">-DQT_QMAKE_EXECUTABLE:STRING=%{Qt:qmakeExecutable}
+    <value type="QString" key="CMake.Initial.Parameters">-GCodeBlocks - Unix Makefiles
+-DQT_QMAKE_EXECUTABLE:STRING=%{Qt:qmakeExecutable}
 -DCMAKE_PREFIX_PATH:STRING=%{Qt:QT_INSTALL_PREFIX}
 -DCMAKE_C_COMPILER:STRING=%{Compiler:Executable:C}
 -DCMAKE_CXX_COMPILER:STRING=%{Compiler:Executable:Cxx}

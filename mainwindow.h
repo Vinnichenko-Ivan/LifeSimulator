@@ -6,7 +6,7 @@
 #include <QPushButton>
 #include <MainModel/MainModel.h>
 #include <GUI/AreaWidget.h>
-#include <GUI/UpPanelWidget.h>
+//#include <GUI/UpPanelWidget.h>
 #include <GUI/GeneratorsSettingWidget.h>
 #include <GUI/SettingWidget.h>
 #include <GUI/StatisticWidget.h>
@@ -18,6 +18,9 @@
 #include <QPen>
 #include <Qt>
 #include <QTimer>
+#include <QMenu>
+#include <QMenuBar>
+#include <QAction>
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -41,12 +44,13 @@ private:
     FoodGenerator * foodGenerator;
     MainModel * model;
     AreaWidget* arena;
-    UpPanelWidget* upPanel;
+    //UpPanelWidget* upPanel;
     SettingWidget* settings;
     StatisticWidget* statistics;
     GeneratorsSettingWidget* generatoesSetting;
     QTimer * timer;
-
+    QMenuBar * menuBar;
+    void createMenus();
 };
 #endif // MAINWINDOW_H
 

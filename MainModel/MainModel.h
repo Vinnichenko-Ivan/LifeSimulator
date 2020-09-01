@@ -1,4 +1,5 @@
-#pragma once
+#ifndef MAINMODEL_H
+#define MAINMODEL_H
 #include <algorithm>
 #include <math.h>
 #include <QTimer>
@@ -15,6 +16,7 @@
 #include "entity/public/IOldingFood.h"
 #include "entity/public/IOldingCreatures.h"
 #include "entity/public/IDoingCreatures.h"
+#include "entity/public/IVisionCreatures.h"
 #include "entity/Creature.h"
 #include "entity/Food.h"
 class QTimer;
@@ -40,14 +42,18 @@ public:
     void update();
     void oldingCreatures();
     void goingCreatures();
+    void visionCreatures();
     void recountCordinate();
     void recountFoodCordinate();
     void goToNewCordinate(Cordinate * oldCordinate,Path path);
     void killCreatures(int number);
     void killFood(int number);
     double getAngleToCord(Cordinate* myCord, Cordinate* targetCord);
+    double getLenghtToCord(Cordinate* myCord, Cordinate* targetCord);
+    
     QVector<Creature*> creatures;
     QVector<IOldingCreatures *> oldingCreaturesInterface;
+    QVector<IVisionCreatures *> iVisionCreatures;
     QVector<Cordinate *> cordinatesCreatures;
     QVector<IDoingCreatures *> doings;
     QVector<Food*> foods;
@@ -60,3 +66,4 @@ private:
     bool isPaused=false;
     int wight, height;
 };
+#endif

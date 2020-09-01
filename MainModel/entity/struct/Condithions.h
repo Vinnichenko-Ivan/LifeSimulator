@@ -5,7 +5,7 @@ struct Condithions
     Condithions(int id): id(id){}
     int xp=100;
     int energy=1000;
-    int visionzLenght=50;
+    int visionLenght=150;
     int id;
     long long int age=0;
     void update()

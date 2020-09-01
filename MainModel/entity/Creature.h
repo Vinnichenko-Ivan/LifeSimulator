@@ -15,7 +15,8 @@ class Creature: public IOldingCreatures,
 {
 public:
     Condithions condithions = Condithions(0);
-    std::vector<VisiableEntity> vision;
+    std::vector<VisiableEntity> visionCreatures;
+    std::vector<VisiableEntity> visionFoods;
     int id;
     int angle=0;
     Creature(Condithions condithionsIn): id(id) {
@@ -25,10 +26,17 @@ public:
     ~Creature()
     {
     }
-    virtual void visionUpdate(std::vector<VisiableEntity>visionIn) override
+
+    virtual void visionCreaturesUpdate(std::vector<VisiableEntity>visionCreaturesIn) override
     {
-        vision=visionIn;
+        visionCreatures=visionCreaturesIn;
     }
+
+    virtual void visionFoodsUpdate(std::vector<VisiableEntity>visionFoodsIn)override
+    {
+        visionFoods=visionFoodsIn;
+    }
+
     virtual void update(Condithions condithionsIn) override
     {
         condithions=condithionsIn;
@@ -36,7 +44,15 @@ public:
 
     virtual Path going() override
     {
-        angle=(angle+5)%360;
+
+        if(visionCreatures.size()>0)
+        {
+            angle+=visionCreatures[0].angle;
+        }
+        else
+        {
+            angle=(angle+5)%360;
+        }
         return Path(1,angle);
     }
 };

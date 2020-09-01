@@ -4,6 +4,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
 {
+
     srand ( time(NULL) );
     model = new MainModel(this);
     creaturesGenerator = new CreaturesGenerator(model,this);
@@ -11,12 +12,12 @@ MainWindow::MainWindow(QWidget *parent)
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &MainWindow::graphicUpdate);
     arena=new AreaWidget(model,this);
-    upPanel= new UpPanelWidget(this);
+    //upPanel= new UpPanelWidget(this);
     settings= new SettingWidget(this);
     statistics=new StatisticWidget(this);
     generatoesSetting=new GeneratorsSettingWidget(foodGenerator,this);
     QGridLayout * layout = new QGridLayout(this);//15 на 35
-    layout->addWidget(upPanel,0,0,1,15);
+    //layout->addWidget(upPanel,0,0,1,15);
     layout->addWidget(arena,1,0,34,12);
     layout->addWidget(statistics,1,12,10,3);
     layout->addWidget(generatoesSetting,11,12,10,3);
@@ -26,14 +27,16 @@ MainWindow::MainWindow(QWidget *parent)
     connect(generatoesSetting->addFoodButton,   &QPushButton::clicked, foodGenerator,  &FoodGenerator::addFood);
     connect(settings->pauseButton,   &QPushButton::clicked, model,  &MainModel::pause);
     connect(settings->pauseButton,   &QPushButton::clicked, foodGenerator,  &FoodGenerator::pause);
-   // connect(this, &MainWindow::paused, model, &MainModel::pause);
+    createMenus();
     graphicStart();
+
+    //qDebug()<<DEBUG;
 }
 
 void MainWindow::graphicUpdate()
 {
    arena->update();
-   upPanel->update();
+   //upPanel->update();
    settings->update();
    statistics->update();
    generatoesSetting->update();
@@ -46,3 +49,11 @@ void MainWindow::graphicStart() {
 void MainWindow::graphicStop() {
     timer->stop();
 }
+
+void MainWindow::createMenus()
+{
+//    menuBar=new QMenuBar(this);
+
+}
+
+

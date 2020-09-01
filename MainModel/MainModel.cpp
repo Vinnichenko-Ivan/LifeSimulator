@@ -5,6 +5,7 @@ void MainModel::addNewCreature(Creature * creature,Cordinate * cordinate,Condith
     creatures.push_back(creature);
     oldingCreaturesInterface.push_back(creature);
     doings.push_back(creature);
+    iVisionCreatures.push_back(creature);
     cordinatesCreatures.push_back(cordinate);
     condithionsCreature.push_back(condithions);
 }
@@ -93,7 +94,8 @@ void MainModel::goingCreatures()
 void MainModel::update()
 {
     oldingCreatures();
-    goingCreatures();
+    visionCreatures();
+    goingCreatures(); //return (degree+540-currentAzimut)%360-180;
 }
 
 void  MainModel::pause()
@@ -125,13 +127,14 @@ void MainModel::recountFoodCordinate()
 void MainModel::goToNewCordinate(Cordinate * oldCordinate,Path path)
 {
     oldCordinate->x+=std::sin( (double)path.angle * PI / (double)180)*path.path;
-    oldCordinate->y+=std::cos( (double)path.angle * PI / (double)180)*path.path;
+    oldCordinate->y-=std::cos( (double)path.angle * PI / (double)180)*path.path;
     oldCordinate->angle= (double)path.angle;
 }
 
 double MainModel::getAngleToCord(Cordinate* myCord, Cordinate* targetCord)
 {
-    
+    int degreeOntarget=((int)((int)-1*(std::atan2((targetCord->x-myCord->x),(targetCord->y-myCord->y))/PI*180)+180)%360);
+    return -(int)(myCord->angle+540-degreeOntarget)%360-180;
 }
 
 double MainModel::getLenghtToCord(Cordinate* myCord, Cordinate* targetCord)
@@ -144,6 +147,7 @@ void MainModel::killCreatures(int number)
     delete creatures[number];
     delete cordinatesCreatures[number];
     delete condithionsCreature[number];
+    iVisionCreatures.erase(iVisionCreatures.begin()+number);
     creatures.erase(creatures.begin()+number);
     oldingCreaturesInterface.erase(oldingCreaturesInterface.begin()+number);
     doings.erase(doings.begin()+number);
@@ -158,4 +162,27 @@ void MainModel::killFood(int number)
     foods.erase(foods.begin()+number);
     oldingFoodInterface.erase(oldingFoodInterface.begin()+number);
     cordinatesFoods.erase(cordinatesFoods.begin()+number);
+}
+
+void MainModel::visionCreatures()
+{
+    int lenght,angle;
+    for(int i=0;i< iVisionCreatures.size();i++)
+    {
+        std::vector<VisiableEntity> vision;
+        for(int j=0;j<cordinatesCreatures.size();j++)
+        {
+            if(j!=i)
+            {
+                lenght=getLenghtToCord(cordinatesCreatures[i],cordinatesCreatures[j]);
+                if(lenght<=condithionsCreature[i]->visionLenght)
+                {
+                    angle=getAngleToCord(cordinatesCreatures[i],cordinatesCreatures[j]);
+                    VisiableEntity iSeeEntity(lenght,angle,"creature");
+                    vision.push_back(iSeeEntity);
+                }
+            }
+        }
+        iVisionCreatures[i]->visionCreaturesUpdate(vision);
+    }
 }
