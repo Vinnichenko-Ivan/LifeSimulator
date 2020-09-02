@@ -50,7 +50,7 @@ void FoodGenerator::stop()
 }
 void FoodGenerator::pause()
 {
-
+    pauseFlag=!pauseFlag;
     if(pauseFlag)
     {
        stop();
@@ -59,5 +59,4 @@ void FoodGenerator::pause()
     {
         start();
     }
-    pauseFlag=!pauseFlag;
 }
