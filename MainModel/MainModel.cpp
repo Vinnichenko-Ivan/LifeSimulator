@@ -91,11 +91,43 @@ void MainModel::goingCreatures()
     }
 }
 
+void MainModel::feedingCreatures()
+{
+    if(isPaused)
+    {
+
+    }
+    else
+    {
+        for(int i=0;i< doings.size();i++)
+        {
+            if(doings[i]->bite())
+            {
+                for(int j=0;j<cordinatesFoods.size();j++)
+                {
+                    if(std::abs(getAngleToCord(cordinatesCreatures[i],cordinatesFoods[j]))<63)
+                    {
+
+                        if(getLenghtToCord(cordinatesCreatures[i],cordinatesFoods[j])<7)
+                        {
+                            condithionsCreature[i]->energy+=foods[j]->energy;
+                            killFood(j);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 void MainModel::update()
 {
+    recountFoodCordinate();
     oldingCreatures();
-    visionCreatures();
+    visionCreaturesToCreatures();
+    visionFoodsToCreatures();
     goingCreatures(); //return (degree+540-currentAzimut)%360-180;
+    feedingCreatures();
 }
 
 void  MainModel::pause()
@@ -134,7 +166,7 @@ void MainModel::goToNewCordinate(Cordinate * oldCordinate,Path path)
 double MainModel::getAngleToCord(Cordinate* myCord, Cordinate* targetCord)
 {
     int degreeOntarget=((int)((int)-1*(std::atan2((targetCord->x-myCord->x),(targetCord->y-myCord->y))/PI*180)+180)%360);
-    return -(int)(myCord->angle+540-degreeOntarget)%360-180;
+    return -((int)(myCord->angle+540-degreeOntarget)%360-180)%180;
 }
 
 double MainModel::getLenghtToCord(Cordinate* myCord, Cordinate* targetCord)
@@ -164,7 +196,7 @@ void MainModel::killFood(int number)
     cordinatesFoods.erase(cordinatesFoods.begin()+number);
 }
 
-void MainModel::visionCreatures()
+void MainModel::visionCreaturesToCreatures()
 {
     int lenght,angle;
     for(int i=0;i< iVisionCreatures.size();i++)
@@ -184,5 +216,28 @@ void MainModel::visionCreatures()
             }
         }
         iVisionCreatures[i]->visionCreaturesUpdate(vision);
+    }
+}
+
+void MainModel::visionFoodsToCreatures()
+{
+    int lenght,angle;
+    for(int i=0;i< iVisionCreatures.size();i++)
+    {
+        std::vector<VisiableEntity> vision;
+        for(int j=0;j<cordinatesFoods.size();j++)
+        {
+            if(j!=i)
+            {
+                lenght=getLenghtToCord(cordinatesCreatures[i],cordinatesFoods[j]);
+                if(lenght<=condithionsCreature[i]->visionLenght)
+                {
+                    angle=getAngleToCord(cordinatesCreatures[i],cordinatesFoods[j]);
+                    VisiableEntity iSeeEntity(lenght,angle,"foods");
+                    vision.push_back(iSeeEntity);
+                }
+            }
+        }
+        iVisionCreatures[i]->visionFoodsUpdate(vision);
     }
 }

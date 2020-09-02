@@ -7,6 +7,7 @@ class Food: public IOldingFood
 {
 public:
     int id;
+    int energy=100;
     int age=0;
     Food(int idIn);
     virtual void update() override;

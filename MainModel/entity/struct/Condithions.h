@@ -17,7 +17,8 @@ struct Condithions
             energy=0;
             xp--;
         }
-        qDebug()<<"my age: "<<age<< " my_id: "<<id;
+        qDebug()<<"my age: "<<age<< " my_id: "<<id<<"my energy: "<<energy<<"my xp: "<<xp;
+
     }
     bool isDead()
     {

@@ -5,5 +5,6 @@ class IDoingCreatures
 {
     public:
         virtual Path going()=0;
+        virtual bool bite()=0;
 };
 #endif // IDOINGCREATURE_H

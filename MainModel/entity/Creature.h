@@ -27,6 +27,11 @@ public:
     {
     }
 
+    virtual bool bite() override
+    {
+        return 1;
+    }
+
     virtual void visionCreaturesUpdate(std::vector<VisiableEntity>visionCreaturesIn) override
     {
         visionCreatures=visionCreaturesIn;
@@ -44,8 +49,20 @@ public:
 
     virtual Path going() override
     {
-
-        if(visionCreatures.size()>0)
+        if(visionFoods.size()>0)
+        {
+           int nearFood=0,nearLenght=900;
+           for(int i=0;i<visionFoods.size();i++)
+           {
+               if(nearLenght>visionFoods[i].lenght)
+               {
+                   nearLenght=visionFoods[i].lenght;
+                   nearFood=i;
+               }
+           }
+           angle+=visionFoods[nearFood].angle;
+        }
+        else if(visionCreatures.size()>0)
         {
             angle+=visionCreatures[0].angle;
         }
@@ -55,5 +72,7 @@ public:
         }
         return Path(1,angle);
     }
+
+
 };
 

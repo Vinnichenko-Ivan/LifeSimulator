@@ -42,10 +42,12 @@ public:
     void update();
     void oldingCreatures();
     void goingCreatures();
-    void visionCreatures();
+    void visionCreaturesToCreatures();
+    void visionFoodsToCreatures();
     void recountCordinate();
     void recountFoodCordinate();
     void goToNewCordinate(Cordinate * oldCordinate,Path path);
+    void feedingCreatures();
     void killCreatures(int number);
     void killFood(int number);
     double getAngleToCord(Cordinate* myCord, Cordinate* targetCord);
