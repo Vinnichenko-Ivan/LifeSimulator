@@ -121,7 +121,7 @@ void MainModel::feedingCreatures()
             {
                 for(int j=0;j<cordinatesCreatures.size();j++)
                 {
-                    if(std::abs(getAngleToCord(cordinatesCreatures[i],cordinatesCreatures[j]))<63)
+                    if(std::abs(getAngleToCord(cordinatesCreatures[i],cordinatesCreatures[j]))<63&&i!=j)
                     {
 
                         if(getLenghtToCord(cordinatesCreatures[i],cordinatesCreatures[j])<7)

@@ -13,6 +13,9 @@ private:
     QMenu* display;
     QMenu* displayCreatures;
     QAction* displayCreaturesVisionZone;
+    QAction* displayCreaturesAxis;
+    QAction* displayCreaturesXp;
+    QAction* displayCreaturesEnergy;
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     CentralWindow * centralWindow;

@@ -19,9 +19,15 @@ private:
     MainModel * model;
     void paintCreature(double x,double y,double angle);
     void paintFood(int x,int y);
-    void paintVisionZone(int x,int y,int radius);
+    void paintCreatureVisionZone(int x,int y,int radius);
+    void paintCreatureAxis(double x,double y,double angle);
+    void paintCreaturesXp(int x,int y, double percent);
+    void paintCreaturesEnergy(int x,int y, double percent);
 public:
     bool displayVizionZone=0;
+    bool displayCreaturesAxis=0;
+    bool displayCreaturesXp=0;
+    bool displayCreaturesEnergy=0;
     explicit AreaWidget(MainModel * modelIn, QWidget *parent = nullptr);
     void paintEvent(QPaintEvent * event) override;
     void Background();
@@ -30,8 +36,10 @@ public:
     ArenaGraphic* modelGraphic;
     QPixmap  creaturesTexture;
 
-    void displayVizionZoneTurn(bool in);
-
+    void displayCreaturesVizionZoneTurn(bool in);
+    void displayCreaturesAxisTurn(bool in);
+    void displayCreaturesXpTurn(bool in);
+    void displayCreaturesEnergyTurn(bool in);
 signals:
 
 };
