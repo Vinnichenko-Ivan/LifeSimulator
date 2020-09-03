@@ -1,18 +1,17 @@
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef CENTRALWINDOW_H
+#define CENTRALWINDOW_H
 
 #include <QWidget>
 #include <QPushButton>
-#include <MainModel/MainModel.h>
-#include <GUI/AreaWidget.h>
-//#include <GUI/UpPanelWidget.h>
-#include <GUI/GeneratorsSettingWidget.h>
-#include <GUI/SettingWidget.h>
-#include <GUI/StatisticWidget.h>
-#include <GUI/StatisticWidget.h>
-#include <Generators/CreaturesGenerator.h>
-#include <Generators/FoodGenerator.h>
+#include "../MainModel/MainModel.h"
+#include "AreaWidget.h"
+#include "GeneratorsSettingWidget.h"
+#include "SettingWidget.h"
+#include "StatisticWidget.h"
+#include "StatisticWidget.h"
+#include "../Generators/CreaturesGenerator.h"
+#include "../Generators/FoodGenerator.h"
 #include <QHBoxLayout>
 #include <QPainter>
 #include <QPen>
@@ -22,15 +21,15 @@
 #include <QMenuBar>
 #include <QAction>
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui { class CentralWindow; }
 QT_END_NAMESPACE
 
-class MainWindow : public QWidget
+class CentralWindow : public QWidget
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    CentralWindow(QWidget *parent = nullptr);
     void graphicUpdate();
     void graphicStart();
     void graphicStop();
@@ -52,6 +51,6 @@ private:
     QMenuBar * menuBar;
     void createMenus();
 };
-#endif // MAINWINDOW_H
+#endif // CentralWindow_H
 
 

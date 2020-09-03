@@ -1,7 +1,7 @@
-#include "mainwindow.h"
-#include "./ui_mainwindow.h"
+#include "CentralWindow.h"
+//#include "./ui_CentralWindow.h"
 
-MainWindow::MainWindow(QWidget *parent)
+CentralWindow::CentralWindow(QWidget *parent)
     : QWidget(parent)
 {
 
@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     creaturesGenerator = new CreaturesGenerator(model,this);
     foodGenerator = new FoodGenerator(model,this);
     timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, this, &MainWindow::graphicUpdate);
+    connect(timer, &QTimer::timeout, this, &CentralWindow::graphicUpdate);
     arena=new AreaWidget(model,this);
     //upPanel= new UpPanelWidget(this);
     settings= new SettingWidget(this);
@@ -33,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
     //qDebug()<<DEBUG;
 }
 
-void MainWindow::graphicUpdate()
+void CentralWindow::graphicUpdate()
 {
    arena->update();
    //upPanel->update();
@@ -42,15 +42,15 @@ void MainWindow::graphicUpdate()
    generatoesSetting->update();
 }
 
-void MainWindow::graphicStart() {
+void CentralWindow::graphicStart() {
     timer->start(1000 / 24);
 }
 
-void MainWindow::graphicStop() {
+void CentralWindow::graphicStop() {
     timer->stop();
 }
 
-void MainWindow::createMenus()
+void CentralWindow::createMenus()
 {
 //    menuBar=new QMenuBar(this);
 
