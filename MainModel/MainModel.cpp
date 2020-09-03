@@ -86,7 +86,7 @@ void MainModel::goingCreatures()
         for(int i=0;i< doings.size();i++)
         {
             Path path =doings[i]->going();
-            goToNewCordinate(cordinatesCreatures[i],path);
+            goToNewCordinate(cordinatesCreatures[i],condithionsCreature[i],path);
         }
     }
 }
@@ -171,11 +171,28 @@ void MainModel::recountFoodCordinate()
     }
 }
 
-void MainModel::goToNewCordinate(Cordinate * oldCordinate,Path path)
+void MainModel::goToNewCordinate(Cordinate * oldCordinate,Condithions* cond,Path path)
 {
-    oldCordinate->x+=std::sin( (double)path.angle * PI / (double)180)*path.path;
-    oldCordinate->y-=std::cos( (double)path.angle * PI / (double)180)*path.path;
-    oldCordinate->angle= (double)path.angle;
+    if(path.path>cond->maxLenght)
+    {
+      path.path=cond->maxLenght;
+    }
+    if(path.path<-cond->maxLenght)
+    {
+      path.path=-cond->maxLenght;
+    }
+    if(path.angle>cond->maxAngleD)
+    {
+       path.angle=cond->maxAngleD;
+    }
+    if(path.angle<-cond->maxAngleD)
+    {
+       path.angle=-cond->maxAngleD;
+    }
+    oldCordinate->angle= int(oldCordinate->angle+path.angle+360)%360;
+    oldCordinate->x+=std::sin( (double)oldCordinate->angle * PI / (double)180)*path.path;
+    oldCordinate->y-=std::cos( (double)oldCordinate->angle * PI / (double)180)*path.path;
+
 }
 
 double MainModel::getAngleToCord(Cordinate* myCord, Cordinate* targetCord)

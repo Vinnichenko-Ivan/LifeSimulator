@@ -46,7 +46,7 @@ public:
     void visionFoodsToCreatures();
     void recountCordinate();
     void recountFoodCordinate();
-    void goToNewCordinate(Cordinate * oldCordinate,Path path);
+    void goToNewCordinate(Cordinate * oldCordinate,Condithions* cond,Path path);
     void feedingCreatures();
     void killCreatures(int number);
     void killFood(int number);

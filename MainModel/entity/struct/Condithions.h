@@ -11,6 +11,8 @@ struct Condithions
     int maxXp=100;
     int maxEnergy=1000;
     int damage=1;
+    double maxLenght=10;
+    double maxAngleD=10;
     long long int age=0;
     void update()
     {

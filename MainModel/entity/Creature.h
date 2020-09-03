@@ -60,11 +60,11 @@ public:
                    nearFood=i;
                }
            }
-           angle+=visionFoods[nearFood].angle;
+           angle=visionFoods[nearFood].angle;
         }
         else if(visionCreatures.size()>0)
         {
-            angle+=visionCreatures[0].angle;
+            angle=visionCreatures[0].angle;
         }
         else
         {
