@@ -101,7 +101,8 @@ void MainModel::feedingCreatures()
     {
         for(int i=0;i< doings.size();i++)
         {
-            if(doings[i]->bite())
+            bool bite=doings[i]->bite();
+            if(bite)
             {
                 for(int j=0;j<cordinatesFoods.size();j++)
                 {
@@ -112,6 +113,20 @@ void MainModel::feedingCreatures()
                         {
                             condithionsCreature[i]->energy+=foods[j]->energy;
                             killFood(j);
+                        }
+                    }
+                }
+            }
+            if(bite)
+            {
+                for(int j=0;j<cordinatesCreatures.size();j++)
+                {
+                    if(std::abs(getAngleToCord(cordinatesCreatures[i],cordinatesCreatures[j]))<63)
+                    {
+
+                        if(getLenghtToCord(cordinatesCreatures[i],cordinatesCreatures[j])<7)
+                        {
+                            condithionsCreature[j]->xp-=condithionsCreature[i]->damage;
                         }
                     }
                 }
