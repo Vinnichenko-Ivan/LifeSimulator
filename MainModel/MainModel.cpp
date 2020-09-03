@@ -242,15 +242,12 @@ void MainModel::visionFoodsToCreatures()
         std::vector<VisiableEntity> vision;
         for(int j=0;j<cordinatesFoods.size();j++)
         {
-            if(j!=i)
+            lenght=getLenghtToCord(cordinatesCreatures[i],cordinatesFoods[j]);
+            if(lenght<=condithionsCreature[i]->visionLenght)
             {
-                lenght=getLenghtToCord(cordinatesCreatures[i],cordinatesFoods[j]);
-                if(lenght<=condithionsCreature[i]->visionLenght)
-                {
-                    angle=getAngleToCord(cordinatesCreatures[i],cordinatesFoods[j]);
-                    VisiableEntity iSeeEntity(lenght,angle,"foods");
-                    vision.push_back(iSeeEntity);
-                }
+                angle=getAngleToCord(cordinatesCreatures[i],cordinatesFoods[j]);
+                VisiableEntity iSeeEntity(lenght,angle,"foods");
+                vision.push_back(iSeeEntity);
             }
         }
         iVisionCreatures[i]->visionFoodsUpdate(vision);
