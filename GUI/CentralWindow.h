@@ -38,7 +38,7 @@ private slots:
 signals:
     void paused();
 
-private:
+public:
     CreaturesGenerator * creaturesGenerator;
     FoodGenerator * foodGenerator;
     MainModel * model;

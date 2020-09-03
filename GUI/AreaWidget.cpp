@@ -4,7 +4,7 @@ AreaWidget::AreaWidget(MainModel * modelIn,QWidget *parent) : QWidget(parent)
 {
     model=modelIn;
     modelGraphic=modelIn;
-    creaturesTexture =  QPixmap("/home/enigma/programming/qt/lifeSimulator/lifeSimulator/GUI/texture/Untitled.bmp");
+    creaturesTexture =  QPixmap(creature_xpm);
 }
 void AreaWidget::Background()
 {
@@ -29,14 +29,21 @@ void AreaWidget::paintEvent(QPaintEvent *event)
     {
         paintFood(n->x,n->y);
     }
+    if(displayVizionZone)
+    {
+        for(int i=0;i<model->cordinatesCreatures.size();i++)
+        {
+            paintVisionZone(model->cordinatesCreatures[i]->x,model->cordinatesCreatures[i]->y,model->condithionsCreature[i]->visionLenght);
+        }
+    }
     painter->end();
 }
 
 void AreaWidget::paintCreature(double x,double y,double angle)
 {
     //painter->drawPixmap(x-4, y-6, creaturesTexture );
-    painter->setPen(QPen(Qt::black, 1, Qt::SolidLine, Qt::FlatCap));
-    painter->setBrush(QBrush(Qt::red, Qt::SolidPattern));
+    painter->setPen(QPen(QColor(102,95,69,127), 0, Qt::SolidLine, Qt::FlatCap));
+    painter->setBrush(QBrush(QColor(102,95,69,127), Qt::SolidPattern));
     //painter->translate(4,6);
     int helpX=-4,helpY=-6;
     //angle=(int)(360+180-angle)%360;
@@ -56,3 +63,16 @@ void AreaWidget::paintFood(int x,int y)
     painter->setBrush(QBrush(QColor(102,95,69), Qt::SolidPattern));
     painter->drawPoint(x,y);
 }
+
+void AreaWidget::paintVisionZone(int x,int y,int radius)
+{
+    painter->setPen(QPen(QColor(102,95,69,127), 0, Qt::SolidLine, Qt::FlatCap));
+    painter->setBrush(QBrush(QColor(102,95,69,127), Qt::SolidPattern));
+    painter->drawEllipse(x-radius/2,y-radius/2,radius,radius);
+}
+
+void AreaWidget::displayVizionZoneTurn(bool in)
+{
+    displayVizionZone=in;
+}
+
