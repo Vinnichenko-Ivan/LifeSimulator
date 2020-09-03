@@ -21,12 +21,12 @@ private:
     void paintFood(int x,int y);
     void paintCreatureVisionZone(int x,int y,int radius);
     void paintCreatureAxis(double x,double y,double angle);
-    void paintCreaturesXp(int x,int y, double percent);
+    void paintCreaturesHp(int x,int y, double percent);
     void paintCreaturesEnergy(int x,int y, double percent);
 public:
     bool displayVizionZone=0;
     bool displayCreaturesAxis=0;
-    bool displayCreaturesXp=0;
+    bool displayCreaturesHp=0;
     bool displayCreaturesEnergy=0;
     explicit AreaWidget(MainModel * modelIn, QWidget *parent = nullptr);
     void paintEvent(QPaintEvent * event) override;
@@ -38,7 +38,7 @@ public:
 
     void displayCreaturesVizionZoneTurn(bool in);
     void displayCreaturesAxisTurn(bool in);
-    void displayCreaturesXpTurn(bool in);
+    void displayCreaturesHpTurn(bool in);
     void displayCreaturesEnergyTurn(bool in);
 signals:
 

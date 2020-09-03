@@ -14,7 +14,7 @@ private:
     QMenu* displayCreatures;
     QAction* displayCreaturesVisionZone;
     QAction* displayCreaturesAxis;
-    QAction* displayCreaturesXp;
+    QAction* displayCreaturesHp;
     QAction* displayCreaturesEnergy;
 public:
     explicit MainWindow(QWidget *parent = nullptr);

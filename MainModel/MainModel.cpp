@@ -126,7 +126,7 @@ void MainModel::feedingCreatures()
 
                         if(getLenghtToCord(cordinatesCreatures[i],cordinatesCreatures[j])<7)
                         {
-                            condithionsCreature[j]->xp-=condithionsCreature[i]->damage;
+                            condithionsCreature[j]->hp-=condithionsCreature[i]->damage;
                         }
                     }
                 }

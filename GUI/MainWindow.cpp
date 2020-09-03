@@ -13,9 +13,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     displayCreaturesAxis = new QAction("Axis");
     displayCreaturesAxis->setCheckable(true);
     displayCreaturesAxis->setChecked(false);
-    displayCreaturesXp = new QAction("Xill point");
-    displayCreaturesXp->setCheckable(true);
-    displayCreaturesXp->setChecked(false);
+    displayCreaturesHp = new QAction("Hill point");
+    displayCreaturesHp->setCheckable(true);
+    displayCreaturesHp->setChecked(false);
     displayCreaturesEnergy =new QAction("Energy");
     displayCreaturesEnergy->setCheckable(true);
     displayCreaturesEnergy->setChecked(false);
@@ -24,14 +24,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     display->addMenu(displayCreatures);
     displayCreatures->addAction(displayCreaturesVisionZone);
     displayCreatures->addAction(displayCreaturesAxis);
-    displayCreatures->addAction(displayCreaturesXp);
+    displayCreatures->addAction(displayCreaturesHp);
     displayCreatures->addAction(displayCreaturesEnergy);
     connect(displayCreaturesVisionZone,QOverload<bool>::of(&QAction::toggled),
             [=](bool i){centralWindow->arena->displayCreaturesVizionZoneTurn(i);});
     connect(displayCreaturesAxis,QOverload<bool>::of(&QAction::toggled),
             [=](bool i){centralWindow->arena->displayCreaturesAxisTurn(i);});
-    connect(displayCreaturesXp,QOverload<bool>::of(&QAction::toggled),
-            [=](bool i){centralWindow->arena->displayCreaturesXpTurn(i);});
+    connect(displayCreaturesHp,QOverload<bool>::of(&QAction::toggled),
+            [=](bool i){centralWindow->arena->displayCreaturesHpTurn(i);});
     connect(displayCreaturesEnergy,QOverload<bool>::of(&QAction::toggled),
             [=](bool i){centralWindow->arena->displayCreaturesEnergyTurn(i);});
 }

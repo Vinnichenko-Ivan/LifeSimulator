@@ -43,11 +43,11 @@ void AreaWidget::paintEvent(QPaintEvent *event)
             paintCreatureAxis(n->x,n->y,n->angle);
         }
     }
-    if(displayCreaturesXp)
+    if(displayCreaturesHp)
     {
         for(int i=0;i<model->cordinatesCreatures.size();i++)
         {
-            paintCreaturesXp(model->cordinatesCreatures[i]->x,model->cordinatesCreatures[i]->y,(double)model->condithionsCreature[i]->xp/(double)model->condithionsCreature[i]->maxXp);
+            paintCreaturesHp(model->cordinatesCreatures[i]->x,model->cordinatesCreatures[i]->y,(double)model->condithionsCreature[i]->hp/(double)model->condithionsCreature[i]->maxHp);
         }
     }
     if(displayCreaturesEnergy)
@@ -122,9 +122,9 @@ void AreaWidget::paintCreatureAxis(double x,double y,double angle)
     painter->rotate(-angle);
 }
 
-void AreaWidget::displayCreaturesXpTurn(bool in)
+void AreaWidget::displayCreaturesHpTurn(bool in)
 {
-    displayCreaturesXp=in;
+    displayCreaturesHp=in;
 }
 
 void AreaWidget::displayCreaturesEnergyTurn(bool in)
@@ -132,7 +132,7 @@ void AreaWidget::displayCreaturesEnergyTurn(bool in)
     displayCreaturesEnergy=in;
 }
 
-void AreaWidget::paintCreaturesXp(int x,int y, double percent)
+void AreaWidget::paintCreaturesHp(int x,int y, double percent)
 {
     int lenght=10;
     int up=-13;
