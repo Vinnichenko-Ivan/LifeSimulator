@@ -43,13 +43,11 @@ public:
     FoodGenerator * foodGenerator;
     MainModel * model;
     AreaWidget* arena;
-    //UpPanelWidget* upPanel;
     SettingWidget* settings;
     StatisticWidget* statistics;
     GeneratorsSettingWidget* generatoesSetting;
     QTimer * timer;
     QMenuBar * menuBar;
-    void createMenus();
 };
 #endif // CentralWindow_H
 

@@ -19,6 +19,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     displayCreaturesEnergy =new QAction("Energy");
     displayCreaturesEnergy->setCheckable(true);
     displayCreaturesEnergy->setChecked(false);
+    helpWindow = new QAction("Help");
+    file->addAction(helpWindow);
     menuBar()->addMenu(file);
     menuBar()->addMenu(display);
     display->addMenu(displayCreatures);

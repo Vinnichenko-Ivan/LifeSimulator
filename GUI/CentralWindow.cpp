@@ -17,7 +17,6 @@ CentralWindow::CentralWindow(QWidget *parent)
     statistics=new StatisticWidget(this);
     generatoesSetting=new GeneratorsSettingWidget(foodGenerator,this);
     QGridLayout * layout = new QGridLayout(this);//15 на 35
-    //layout->addWidget(upPanel,0,0,1,15);
     layout->addWidget(arena,1,0,34,12);
     layout->addWidget(statistics,1,12,10,3);
     layout->addWidget(generatoesSetting,11,12,10,3);
@@ -27,16 +26,12 @@ CentralWindow::CentralWindow(QWidget *parent)
     connect(generatoesSetting->addFoodButton,   &QPushButton::clicked, foodGenerator,  &FoodGenerator::addFood);
     connect(settings->pauseButton,   &QPushButton::clicked, model,  &MainModel::pause);
     connect(settings->pauseButton,   &QPushButton::clicked, foodGenerator,  &FoodGenerator::pause);
-    createMenus();
     graphicStart();
-
-    //qDebug()<<DEBUG;
 }
 
 void CentralWindow::graphicUpdate()
 {
    arena->update();
-   //upPanel->update();
    settings->update();
    statistics->update();
    generatoesSetting->update();
@@ -50,10 +45,6 @@ void CentralWindow::graphicStop() {
     timer->stop();
 }
 
-void CentralWindow::createMenus()
-{
-//    menuBar=new QMenuBar(this);
 
-}
 
 

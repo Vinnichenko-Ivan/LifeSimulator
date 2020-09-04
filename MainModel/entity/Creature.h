@@ -70,7 +70,7 @@ public:
         {
             angle=(angle+5)%360;
         }
-        return Path(1,angle);
+        return Path(10,angle);
     }
 
 
