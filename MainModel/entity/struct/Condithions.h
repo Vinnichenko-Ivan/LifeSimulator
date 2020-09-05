@@ -1,16 +1,19 @@
 #ifndef CONDITHIONS_H
 #define CONDITHIONS_H
 #include<QDebug>
+#include<QString>
+#include <string>
 struct Condithions
 {
     Condithions(int id): id(id){}
+    std::string typeCreature="-";
     int hp=100;
     int energy=500;
     int visionLenght=100;
     int id;
     int maxHp=100;
     int maxEnergy=1000;
-    int damage=1;
+    int damage=10;
     int energyToHp=10;
     double maxLenght=3;
     double maxAngleD=10;
@@ -37,7 +40,7 @@ struct Condithions
             energy-=energyToHp;
             hp++;
         }
-        qDebug()<<"my age: "<<age<< " my_id: "<<id<<"my energy: "<<energy<<"my Hp: "<<hp;
+        qDebug()<<"my age: "<<age<< " my_id: "<<id<<"my energy: "<<energy<<"my Hp: "<<hp<<"myCulture: "<<QString::fromStdString(  typeCreature);
     }
     bool isDead()
     {

@@ -1,20 +1,45 @@
 #include "MainModel.h"
 #define PI 3.14159265
+MainModel::~MainModel()
+{
+    for (auto n:creatures)
+    {
+        delete n;
+    }
+    for (auto n:foods)
+    {
+        delete n;
+    }
+    for (auto n:cordinatesCreatures)
+    {
+        delete n;
+    }
+    for (auto n:cordinatesFoods)
+    {
+        delete n;
+    }
+}
 void MainModel::addNewCreature(Creature * creature,Cordinate * cordinate,Condithions* condithions)
 {
-    creatures.push_back(creature);
-    oldingCreaturesInterface.push_back(creature);
-    doings.push_back(creature);
-    iVisionCreatures.push_back(creature);
-    cordinatesCreatures.push_back(cordinate);
-    condithionsCreature.push_back(condithions);
+    if(creatures.size()<maxCountCreatures||limitationCreatures==0||reproductIfMax)
+    {
+        creatures.push_back(creature);
+        oldingCreaturesInterface.push_back(creature);
+        doings.push_back(creature);
+        iVisionCreatures.push_back(creature);
+        cordinatesCreatures.push_back(cordinate);
+        condithionsCreature.push_back(condithions);
+    }
 }
 
 void MainModel::addNewFood(Food * food, Cordinate * cordinate)
 {
-    foods.push_back(food);
-    oldingFoodInterface.push_back(food);
-    cordinatesFoods.push_back(cordinate);
+    if(foods.size()<maxCountFood||limitationFood==0)
+    {
+        foods.push_back(food);
+        oldingFoodInterface.push_back(food);
+        cordinatesFoods.push_back(cordinate);
+    }
 }
 void MainModel::updateArenaSize(int wightNew,int heightNew)
 {
@@ -71,6 +96,7 @@ void MainModel::oldingCreatures()
         for(int i=0;i<creatures.size();i++)
         {
             creatures[i]->update(*condithionsCreature[i]);
+            cellDivision(i);
         }
     }
 }
@@ -127,6 +153,11 @@ void MainModel::feedingCreatures()
                         if(getLenghtToCord(cordinatesCreatures[i],cordinatesCreatures[j])<7)
                         {
                             condithionsCreature[j]->hp-=condithionsCreature[i]->damage;
+                            if(condithionsCreature[j]->hp<1)
+                            {
+                                condithionsCreature[i]->energy+=condithionsCreature[j]->energy*0.8;
+                                condithionsCreature[j]->energy=0;
+                            }
                         }
                     }
                 }
@@ -143,6 +174,27 @@ void MainModel::update()
     visionFoodsToCreatures();
     goingCreatures(); //return (degree+540-currentAzimut)%360-180;
     feedingCreatures();
+    if(limitationCreatures)
+    {
+        if(creatures.size()>maxCountCreatures)
+        {
+            if(killLimitOldCreatures)
+            {
+                for(int i = creatures.size()-maxCountCreatures;i>0;i--)
+                {
+                    killCreatures(0);
+                }
+            }
+        }
+    }
+
+    if(limitationFood)
+    {
+        while(maxCountFood< foods.size())
+        {
+            killFood(foods.size()-1);
+        }
+    }
 }
 
 void  MainModel::pause()
@@ -269,4 +321,57 @@ void MainModel::visionFoodsToCreatures()
         }
         iVisionCreatures[i]->visionFoodsUpdate(vision);
     }
+}
+
+void MainModel::cellDivision(int number)
+{
+    if(creatures.size()<maxCountCreatures||limitationCreatures==0||reproductIfMax)
+    {
+        if(condithionsCreature[number]->energy>condithionsCreature[number]->maxEnergy*0.8&&condithionsCreature[number]->hp>15)
+        {
+            Creature * creature = new Creature(id);
+            Condithions * condithion = new Condithions(id);
+            Cordinate * cordinate = new Cordinate(cordinatesCreatures[number]->x+rand()%10-5,cordinatesCreatures[number]->y+rand()%10-5);
+            condithion->energy=condithionsCreature[number]->energy/2;
+            condithionsCreature[number]->energy/=2;
+            condithion->typeCreature=condithionsCreature[number]->typeCreature;
+            addNewCreature(creature,cordinate,condithion);
+            id++;
+        }
+    }
+}
+
+void MainModel::setId(int i)
+{
+    id=i;
+}
+
+int MainModel::getId()
+{
+    return id;
+}
+
+void MainModel::setLimitCreatures(bool i)
+{
+    limitationCreatures=i;
+}
+
+void MainModel::setLimitFood(bool i)
+{
+    limitationFood=i;
+}
+
+void MainModel::setCountLimitCreatures(int i)
+{
+    maxCountCreatures=i;
+}
+
+void MainModel::setCountLimitFood(int i)
+{
+    maxCountFood=i;
+}
+
+void MainModel::stopReproductIfMax(bool i)
+{
+    reproductIfMax=i;
 }

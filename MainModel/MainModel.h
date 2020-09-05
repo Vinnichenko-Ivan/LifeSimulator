@@ -10,6 +10,7 @@
 #include "public/CreateCreature.h"
 #include "public/CreateFood.h"
 #include "public/ArenaGraphic.h"
+#include "public/SettingsGraphic.h"
 #include "entity/struct/Cordinate.h"
 #include "entity/struct/Path.h"
 #include "entity/struct/Condithions.h"
@@ -25,7 +26,8 @@ class IOldingCreatures;
 class MainModel: public QObject,
         public CreateCreature,
         public CreateFood,
-        public ArenaGraphic
+        public ArenaGraphic,
+        public SettingsGraphic
 {
     Q_OBJECT
 
@@ -36,6 +38,14 @@ public:
     virtual void updateArenaSize(int wightNew,int heightNew) override;
     virtual std::pair<int,int> getSizeArenaForCreatures() override;
     virtual std::pair<int,int> getSizeArenaForFood() override;
+    virtual void setId(int i)override;
+    virtual int getId()override;
+    virtual void setLimitCreatures(bool i)override;
+    virtual void setLimitFood(bool i)override;
+    virtual void setCountLimitCreatures(int i)override;
+    virtual void setCountLimitFood(int i)override;
+    virtual void stopReproductIfMax(bool i)override;
+    ~MainModel();
     void pause();
     void start();
     void stop();
@@ -50,6 +60,7 @@ public:
     void feedingCreatures();
     void killCreatures(int number);
     void killFood(int number);
+    void cellDivision(int number);
     double getAngleToCord(Cordinate* myCord, Cordinate* targetCord);
     double getLenghtToCord(Cordinate* myCord, Cordinate* targetCord);
     
@@ -67,5 +78,13 @@ private:
     CreateCreature * createCreature;    
     bool isPaused=false;
     int wight, height;
+    int id=0;
+    int energyByKillCreature=250;
+    int maxCountCreatures;
+    int maxCountFood;
+    bool limitationCreatures=0;
+    bool limitationFood=0;
+    bool killLimitOldCreatures=1;
+    bool reproductIfMax=0;
 };
 #endif

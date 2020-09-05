@@ -8,9 +8,10 @@
 #include "../MainModel/entity/Creature.h"
 #include "../MainModel/entity/struct/Cordinate.h"
 #include "../MainModel/entity/struct/Condithions.h"
+#include "public/ICreatureGenerator.h"
 
-
-class CreaturesGenerator : public QObject
+class CreaturesGenerator : public QObject,
+        public ICreatureGenerator
 
 {
     Q_OBJECT
@@ -19,6 +20,11 @@ public:
     CreateCreature * createCreature;
     int wight,height;
     void updateSizeArena();
+    std::vector<std::string> cultureCreatures;
+    std::string thisCulture="default";
+    virtual std::vector<std::string>getCultureCreatures()override;
+    virtual void setCultureCreatures(std::string in)override;
+    virtual std::string getSetCultureCreatures()override;
 signals:
 public:
     int id=0;

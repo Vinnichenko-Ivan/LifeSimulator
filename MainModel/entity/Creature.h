@@ -19,6 +19,7 @@ public:
     std::vector<VisiableEntity> visionFoods;
     int id;
     int angle=0;
+    int speed=10;
     Creature(Condithions condithionsIn): id(id) {
         condithions=condithionsIn;
         id=condithions.id;
@@ -49,6 +50,7 @@ public:
 
     virtual Path going() override
     {
+        speed=10;
         if(visionFoods.size()>0)
         {
            int nearFood=0,nearLenght=900;
@@ -60,17 +62,34 @@ public:
                    nearFood=i;
                }
            }
+           if(std::abs(visionFoods[nearFood].angle)>20&&visionFoods[nearFood].lenght<20)
+           {
+               speed=0;
+           }
            angle=visionFoods[nearFood].angle;
         }
         else if(visionCreatures.size()>0)
         {
-            angle=visionCreatures[0].angle;
+            int nearCreature=0,nearLenght=900;
+            for(int i=0;i<visionCreatures.size();i++)
+            {
+                if(nearLenght>visionCreatures[i].lenght)
+                {
+                    nearLenght=visionCreatures[i].lenght;
+                    nearCreature=i;
+                }
+            }
+            if(std::abs(visionCreatures[nearCreature].angle)>20&&visionCreatures[nearCreature].lenght<20)
+            {
+                speed=0;
+            }
+            angle=visionCreatures[nearCreature].angle;
         }
         else
         {
-            angle=(angle+5)%360;
+            angle=(angle+1)%360;
         }
-        return Path(10,angle);
+        return Path(speed,angle);
     }
 
 

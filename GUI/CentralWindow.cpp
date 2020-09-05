@@ -13,9 +13,9 @@ CentralWindow::CentralWindow(QWidget *parent)
     connect(timer, &QTimer::timeout, this, &CentralWindow::graphicUpdate);
     arena=new AreaWidget(model,this);
     //upPanel= new UpPanelWidget(this);
-    settings= new SettingWidget(this);
+    settings= new SettingWidget(model,this);
     statistics=new StatisticWidget(this);
-    generatoesSetting=new GeneratorsSettingWidget(foodGenerator,this);
+    generatoesSetting=new GeneratorsSettingWidget(foodGenerator,creaturesGenerator,this);
     QGridLayout * layout = new QGridLayout(this);//15 на 35
     layout->addWidget(arena,1,0,34,12);
     layout->addWidget(statistics,1,12,10,3);

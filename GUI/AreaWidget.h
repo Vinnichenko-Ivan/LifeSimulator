@@ -26,8 +26,8 @@ private:
 public:
     bool displayVizionZone=0;
     bool displayCreaturesAxis=0;
-    bool displayCreaturesHp=0;
-    bool displayCreaturesEnergy=0;
+    bool displayCreaturesHp=1;
+    bool displayCreaturesEnergy=1;
     explicit AreaWidget(MainModel * modelIn, QWidget *parent = nullptr);
     void paintEvent(QPaintEvent * event) override;
     void Background();
