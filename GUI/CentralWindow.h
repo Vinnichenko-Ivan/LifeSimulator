@@ -12,6 +12,7 @@
 #include "StatisticWidget.h"
 #include "../Generators/CreaturesGenerator.h"
 #include "../Generators/FoodGenerator.h"
+#include "Statistic/HandlerStatistic.h"
 #include <QHBoxLayout>
 #include <QPainter>
 #include <QPen>
@@ -46,6 +47,7 @@ public:
     SettingWidget* settings;
     StatisticWidget* statistics;
     GeneratorsSettingWidget* generatoesSetting;
+    HandlerStatistic * handlerStatistic;
     QTimer * timer;
     QMenuBar * menuBar;
 };

@@ -8,7 +8,7 @@
 #include <QImage>
 #include <QtGui>
 #include <math.h>
-#include "texture/creature.xpm"
+//#include "texture/creature.xpm"
 #include "../MainModel/MainModel.h"
 #include "../MainModel/public/ArenaGraphic.h"
 #include "../MainModel/entity/struct/Cordinate.h"

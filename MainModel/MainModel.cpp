@@ -23,6 +23,7 @@ void MainModel::addNewCreature(Creature * creature,Cordinate * cordinate,Condith
 {
     if(creatures.size()<maxCountCreatures||limitationCreatures==0||reproductIfMax)
     {
+        statisticData->countCreateCreatures++;
         creatures.push_back(creature);
         oldingCreaturesInterface.push_back(creature);
         doings.push_back(creature);
@@ -59,6 +60,10 @@ std::pair<int,int> MainModel::getSizeArenaForFood()
 }
 
 MainModel::MainModel( QObject *parent): QObject(parent){
+    cultures.push_back(new Culture(QColor(255,0,0)));
+    cultures.push_back(new Culture(QColor(0,255,0)));
+    cultures.push_back(new Culture(QColor(0,0,255)));
+    statisticData=new StatisticData;
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &MainModel::update);
     start();
@@ -81,9 +86,11 @@ void MainModel::oldingCreatures()
     }
     else
     {
+        long long int allAges=0;
         for(auto * n : condithionsCreature)
         {
             n->update();
+            allAges+=n->age;
         }
         for(int i=0;i<condithionsCreature.size();i++)
         {
@@ -97,6 +104,10 @@ void MainModel::oldingCreatures()
         {
             creatures[i]->update(*condithionsCreature[i]);
             cellDivision(i);
+        }
+        if(creatures.size()>0)
+        {
+            statisticData->averageAge=allAges/condithionsCreature.size();
         }
     }
 }
@@ -150,7 +161,7 @@ void MainModel::feedingCreatures()
                     if(std::abs(getAngleToCord(cordinatesCreatures[i],cordinatesCreatures[j]))<63&&i!=j)
                     {
 
-                        if(getLenghtToCord(cordinatesCreatures[i],cordinatesCreatures[j])<7)
+                        if(getLenghtToCord(cordinatesCreatures[i],cordinatesCreatures[j])<10)
                         {
                             condithionsCreature[j]->hp-=condithionsCreature[i]->damage;
                             if(condithionsCreature[j]->hp<1)
@@ -174,6 +185,7 @@ void MainModel::update()
     visionFoodsToCreatures();
     goingCreatures(); //return (degree+540-currentAzimut)%360-180;
     feedingCreatures();
+    statistic();
     if(limitationCreatures)
     {
         if(creatures.size()>maxCountCreatures)
@@ -195,6 +207,7 @@ void MainModel::update()
             killFood(foods.size()-1);
         }
     }
+
 }
 
 void  MainModel::pause()
@@ -295,6 +308,7 @@ void MainModel::visionCreaturesToCreatures()
                 {
                     angle=getAngleToCord(cordinatesCreatures[i],cordinatesCreatures[j]);
                     VisiableEntity iSeeEntity(lenght,angle,"creature");
+                    iSeeEntity.typeCreature=condithionsCreature[j]->typeCreature;
                     vision.push_back(iSeeEntity);
                 }
             }
@@ -329,9 +343,10 @@ void MainModel::cellDivision(int number)
     {
         if(condithionsCreature[number]->energy>condithionsCreature[number]->maxEnergy*0.8&&condithionsCreature[number]->hp>15)
         {
-            Creature * creature = new Creature(id);
             Condithions * condithion = new Condithions(id);
+            Creature * creature = new Creature(*condithion);
             Cordinate * cordinate = new Cordinate(cordinatesCreatures[number]->x+rand()%10-5,cordinatesCreatures[number]->y+rand()%10-5);
+            cordinate->angle=rand()%365;
             condithion->energy=condithionsCreature[number]->energy/2;
             condithionsCreature[number]->energy/=2;
             condithion->typeCreature=condithionsCreature[number]->typeCreature;
@@ -374,4 +389,12 @@ void MainModel::setCountLimitFood(int i)
 void MainModel::stopReproductIfMax(bool i)
 {
     reproductIfMax=i;
+}
+
+void MainModel::statistic()
+{
+    statisticData->countLivesCreatures=creatures.size();
+    statisticData->countLivesFood=foods.size();
+    statisticData->maxCountLivesCreatures=std::max(statisticData->maxCountLivesCreatures,statisticData->countLivesCreatures);
+    statisticData->maxCountLivesFood=std::max(statisticData->maxCountLivesFood,statisticData->countLivesFood);
 }

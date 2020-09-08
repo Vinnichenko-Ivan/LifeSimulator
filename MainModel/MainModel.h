@@ -6,7 +6,7 @@
 #include <QDebug>
 #include <QObject>
 #include <QVector>
-#include "entity/Creature.h"
+#include "struct/StatisticData.h"
 #include "public/CreateCreature.h"
 #include "public/CreateFood.h"
 #include "public/ArenaGraphic.h"
@@ -20,6 +20,7 @@
 #include "entity/public/IVisionCreatures.h"
 #include "entity/Creature.h"
 #include "entity/Food.h"
+#include "struct/Culture.h"
 class QTimer;
 class IOldingCreatures;
 
@@ -61,6 +62,7 @@ public:
     void killCreatures(int number);
     void killFood(int number);
     void cellDivision(int number);
+    void statistic();
     double getAngleToCord(Cordinate* myCord, Cordinate* targetCord);
     double getLenghtToCord(Cordinate* myCord, Cordinate* targetCord);
     
@@ -73,6 +75,8 @@ public:
     QVector<IOldingFood *> oldingFoodInterface;
     QVector<Cordinate *> cordinatesFoods;
     QVector<Condithions*> condithionsCreature;
+    StatisticData * statisticData;
+    QVector<Culture*> cultures;
 private: 
     QTimer * timer;
     CreateCreature * createCreature;    

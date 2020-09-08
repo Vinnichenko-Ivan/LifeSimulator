@@ -1,12 +1,19 @@
 #ifndef CONDITHIONS_H
 #define CONDITHIONS_H
 #include<QDebug>
+#include<QColor>
 #include<QString>
 #include <string>
+#include "../../struct/Culture.h"
 struct Condithions
 {
-    Condithions(int id): id(id){}
+    Culture *culture;
+    Condithions(int id, Culture *cultureIn=nullptr): id(id)
+    {
+        culture=cultureIn;
+    }
     std::string typeCreature="-";
+    QColor color;
     int hp=100;
     int energy=500;
     int visionLenght=100;

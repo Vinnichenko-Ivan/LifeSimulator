@@ -14,7 +14,8 @@ CentralWindow::CentralWindow(QWidget *parent)
     arena=new AreaWidget(model,this);
     //upPanel= new UpPanelWidget(this);
     settings= new SettingWidget(model,this);
-    statistics=new StatisticWidget(this);
+    handlerStatistic = new HandlerStatistic(model->statisticData);
+    statistics=new StatisticWidget(handlerStatistic,this);
     generatoesSetting=new GeneratorsSettingWidget(foodGenerator,creaturesGenerator,this);
     QGridLayout * layout = new QGridLayout(this);//15 на 35
     layout->addWidget(arena,1,0,34,12);
