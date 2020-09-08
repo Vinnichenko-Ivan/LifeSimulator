@@ -3,10 +3,8 @@
 CreaturesGenerator::CreaturesGenerator(CreateCreature * createCreatureIn,QObject *parent) : QObject(parent)
 {
     createCreature=createCreatureIn;
-    cultureCreatures.push_back("default");
-    cultureCreatures.push_back("default1");
-    cultureCreatures.push_back("default2");
-    cultureCreatures.push_back("default3");
+    updateCultures();
+    thisCulture=cultures[0];
 }
 
 void CreaturesGenerator::updateSizeArena()
@@ -26,24 +24,37 @@ void CreaturesGenerator::addCreature()
     int x=rand()%wight;
     int y=rand()%height;
     Cordinate * cordinate= new Cordinate(x,y);
-    condithions->typeCreature=thisCulture;
+    condithions->typeCreature="default";
+    condithions->culture=thisCulture;
+    condithions->typeCreature=thisCulture->getNameOfCulture();
     qDebug()<<"add Creature with id: "<<id<< "cordinates x:"<<x<<" y:"<<y;
     createCreature->addNewCreature(creature,cordinate,condithions);
     id++;
     createCreature->setId(id);
 }
 
-std::vector<std::string> CreaturesGenerator::getCultureCreatures()
+std::vector<std::pair<std::string,int>> CreaturesGenerator::getCultureCreatures()
 {
-    return cultureCreatures;
+    std::vector<std::pair<std::string,int>> listCreatures;
+    for(int i=0;i<cultures.size();i++)
+    {
+        listCreatures.push_back(std::pair<std::string,int>(cultures[i]->getNameOfCulture(),i));
+    }
+    return listCreatures;
 }
 
-void CreaturesGenerator::setCultureCreatures(std::string in)
+void CreaturesGenerator::setCultureCreatures(int i)
 {
-    thisCulture=in;
+    thisCulture=cultures[i];
+    numberThisCulture=i;
 }
 
-std::string CreaturesGenerator::getSetCultureCreatures()
+std::pair<std::string,int> CreaturesGenerator::getSetCultureCreatures()
 {
-    return thisCulture;
+    return std::pair<std::string,int>(thisCulture->getNameOfCulture(),numberThisCulture);
+}
+
+void CreaturesGenerator::updateCultures()
+{
+    cultures=createCreature->getCultures();
 }

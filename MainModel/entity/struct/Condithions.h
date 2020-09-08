@@ -8,7 +8,7 @@
 struct Condithions
 {
     Culture *culture;
-    Condithions(int id, Culture *cultureIn=nullptr): id(id)
+    Condithions(int id=0, Culture *cultureIn=nullptr): id(id)
     {
         culture=cultureIn;
     }

@@ -21,9 +21,9 @@ void AreaWidget::paintEvent(QPaintEvent *event)
     wight=geometry().width();
     height=geometry().height();
     modelGraphic->updateArenaSize(wight,height);
-    for(auto * n:model->cordinatesCreatures)
+    for(int i=0;i<model->cordinatesCreatures.size();i++)
     {
-        paintCreature(n->x,n->y,n->angle);
+        paintCreature(model->cordinatesCreatures[i]->x,model->cordinatesCreatures[i]->y,model->cordinatesCreatures[i]->angle,model->condithionsCreature[i]->culture->getPixmap());
     }
     for(auto * n:model->cordinatesFoods)
     {
@@ -60,8 +60,9 @@ void AreaWidget::paintEvent(QPaintEvent *event)
     painter->end();
 }
 
-void AreaWidget::paintCreature(double x,double y,double angle)
+void AreaWidget::paintCreature(double x,double y,double angle,QPixmap pixmapCreatures )
 {
+
     //painter->drawPixmap(x-4, y-6, creaturesTexture );
     painter->setPen(QPen(QColor(102,95,69,127), 0, Qt::SolidLine, Qt::FlatCap));
     painter->setBrush(QBrush(QColor(102,95,69,127), Qt::SolidPattern));
@@ -72,7 +73,7 @@ void AreaWidget::paintCreature(double x,double y,double angle)
     double newX=(x)*std::cos(angleRad)+(y)*std::sin(angleRad)+helpX;//+((2)*std::cos(angleRad)+(2)*std::sin(angleRad));
     double newY= (-x)*std::sin(angleRad)+(y)*std::cos(angleRad)+helpY;//-((3)*std::cos(angleRad)+(3)*std::sin(angleRad));
     painter->rotate(angle);
-    painter->drawPixmap(newX, newY ,creaturesTexture );
+    painter->drawPixmap(newX, newY ,pixmapCreatures );
     painter->rotate(-angle);
     //painter->translate(-4,-6);
     painter->drawPoint(x,y);

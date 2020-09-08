@@ -46,6 +46,7 @@ public:
     virtual void setCountLimitCreatures(int i)override;
     virtual void setCountLimitFood(int i)override;
     virtual void stopReproductIfMax(bool i)override;
+    virtual QVector<Culture*> getCultures()override;
     ~MainModel();
     void pause();
     void start();

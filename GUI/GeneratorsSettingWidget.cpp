@@ -59,13 +59,16 @@ void GeneratorsSettingWidget::updateCultureCreatures()
     cultures=iCreatureGenerator->getCultureCreatures();
     culture=iCreatureGenerator->getSetCultureCreatures();
     cultureSetting->clear();
-    for(auto n:cultures)
+    if(cultures.size()>0)
     {
-        cultureSetting->addItem(QString::fromStdString(n));
+        for(auto n:cultures)
+        {
+            cultureSetting->addItem(QString::fromStdString(n.first));
+        }
     }
 }
 
 void GeneratorsSettingWidget::setCultureCreatures(int i)
 {
-    iCreatureGenerator->setCultureCreatures(cultures[i]);
+    iCreatureGenerator->setCultureCreatures(i);
 }

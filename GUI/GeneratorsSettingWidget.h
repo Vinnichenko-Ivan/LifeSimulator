@@ -29,8 +29,8 @@ public:
     void reloadFoodTimer(int period);
     void updateCultureCreatures();
     void setCultureCreatures(int i);
-    std::string culture;
-    std::vector<std::string> cultures;
+    std::pair<std::string,int> culture;
+    std::vector<std::pair<std::string,int>> cultures;
 signals:
     void addCreature();
 };

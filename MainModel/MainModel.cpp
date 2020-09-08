@@ -60,9 +60,9 @@ std::pair<int,int> MainModel::getSizeArenaForFood()
 }
 
 MainModel::MainModel( QObject *parent): QObject(parent){
-    cultures.push_back(new Culture(QColor(255,0,0)));
-    cultures.push_back(new Culture(QColor(0,255,0)));
-    cultures.push_back(new Culture(QColor(0,0,255)));
+    cultures.push_back(new Culture(QColor(255,0,0),"default"));
+    cultures.push_back(new Culture(QColor(0,255,0),"default1"));
+    cultures.push_back(new Culture(QColor(0,0,255),"default2"));
     statisticData=new StatisticData;
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &MainModel::update);
@@ -274,8 +274,8 @@ double MainModel::getLenghtToCord(Cordinate* myCord, Cordinate* targetCord)
 void MainModel::killCreatures(int number)
 {
     delete creatures[number];
-    delete cordinatesCreatures[number];
     delete condithionsCreature[number];
+    delete cordinatesCreatures[number]; 
     iVisionCreatures.erase(iVisionCreatures.begin()+number);
     creatures.erase(creatures.begin()+number);
     oldingCreaturesInterface.erase(oldingCreaturesInterface.begin()+number);
@@ -350,6 +350,7 @@ void MainModel::cellDivision(int number)
             condithion->energy=condithionsCreature[number]->energy/2;
             condithionsCreature[number]->energy/=2;
             condithion->typeCreature=condithionsCreature[number]->typeCreature;
+            condithion->culture=condithionsCreature[number]->culture;
             addNewCreature(creature,cordinate,condithion);
             id++;
         }
@@ -397,4 +398,9 @@ void MainModel::statistic()
     statisticData->countLivesFood=foods.size();
     statisticData->maxCountLivesCreatures=std::max(statisticData->maxCountLivesCreatures,statisticData->countLivesCreatures);
     statisticData->maxCountLivesFood=std::max(statisticData->maxCountLivesFood,statisticData->countLivesFood);
+}
+
+QVector<Culture*> MainModel::getCultures()
+{
+    return cultures;
 }

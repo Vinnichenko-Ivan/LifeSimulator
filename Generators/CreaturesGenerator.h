@@ -4,6 +4,7 @@
 #include <math.h>
 #include <QObject>
 #include <vector>
+#include "../MainModel/struct/Culture.h"
 #include "../MainModel/public/CreateCreature.h"
 #include "../MainModel/entity/Creature.h"
 #include "../MainModel/entity/struct/Cordinate.h"
@@ -16,15 +17,17 @@ class CreaturesGenerator : public QObject,
 {
     Q_OBJECT
 public:
+    QVector<Culture*>cultures;
     explicit CreaturesGenerator(CreateCreature * createCreatureIn,QObject *parent = nullptr);
     CreateCreature * createCreature;
     int wight,height;
+    int numberThisCulture;
     void updateSizeArena();
-    std::vector<std::string> cultureCreatures;
-    std::string thisCulture="default";
-    virtual std::vector<std::string>getCultureCreatures()override;
-    virtual void setCultureCreatures(std::string in)override;
-    virtual std::string getSetCultureCreatures()override;
+    void updateCultures();
+    Culture * thisCulture;
+    virtual std::vector<std::pair<std::string,int>>getCultureCreatures()override;
+    virtual void setCultureCreatures(int i)override;
+    virtual std::pair<std::string,int> getSetCultureCreatures()override;
 signals:
 public:
     int id=0;

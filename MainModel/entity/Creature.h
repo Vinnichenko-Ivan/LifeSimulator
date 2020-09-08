@@ -8,13 +8,12 @@
 #include "struct/Path.h"
 #include "struct/Condithions.h"
 #include "struct/VisiableEntity.h"
-class Condithions;
 class Creature: public IOldingCreatures,
         public IDoingCreatures,
         public IVisionCreatures
 {
 public:
-    Condithions condithions= *new Condithions(1);
+    Condithions condithions;
     std::vector<VisiableEntity> visionCreatures;
     std::vector<VisiableEntity> visionFoods;
     int id;
@@ -60,7 +59,7 @@ public:
             if(nearEnemy>visionCreatures[i].lenght&&visionCreatures[i].typeCreature!=condithions.typeCreature)
             {
                 enemyNear=1;
-                nearEnemy=i;
+                nearEnemy=visionCreatures[i].lenght;
                 enemyNumber=i;
             }
         }
