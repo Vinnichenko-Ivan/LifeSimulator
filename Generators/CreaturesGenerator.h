@@ -18,6 +18,7 @@ class CreaturesGenerator : public QObject,
     Q_OBJECT
 public:
     QVector<Culture*>cultures;
+    QVector<Creature*>creaturesCultures;
     explicit CreaturesGenerator(CreateCreature * createCreatureIn,QObject *parent = nullptr);
     CreateCreature * createCreature;
     int wight,height;

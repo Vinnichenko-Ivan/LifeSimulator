@@ -1,58 +1,33 @@
-#pragma once
-#include <QDebug>
-#include <QVector>
-#include <vector>
-#include "struct/Condithions.h"
-#include "public/IOldingCreatures.h"
-#include "public/IDoingCreatures.h"
-#include "public/IVisionCreatures.h"
-#include "struct/Path.h"
-#include "struct/VisiableEntity.h"
-class Condithions;
-class Creature: public IOldingCreatures,
-        public IDoingCreatures,
-        public IVisionCreatures
+#ifndef AGGRESSIVECREATURE_H
+#define AGGRESSIVECREATURE_H
+#include "../../MainModel/entity/Creature.h"
+
+class AggressiveCreature:  public Creature
 {
 public:
-
-    Creature(Condithions condithionsIn)
-    {
-        condithions=condithionsIn;
-        id=condithions.id;
-    }
-
-    Creature(const Creature & source)
+    int adadad;
+    AggressiveCreature(Condithions condithionsIn):Creature(condithionsIn)
     {
     }
+//    AggressiveCreature(const AggressiveCreature & source):Creature(source)
+//    {
+//    }
 
-    virtual Creature* copyForBehavior()
+//    AggressiveCreature& operator=(const AggressiveCreature & source)
+//    {
+//        AggressiveCreature * copy = new AggressiveCreature(condithions);
+//        return *copy;
+//    }
+
+//    virtual Creature* copy()override
+//    {
+//        return new AggressiveCreature(condithions);
+//    }
+
+
+    virtual Creature* copyForBehavior()override
     {
-        return new Creature(condithions);
-    }
-
-
-    ~Creature()
-    {
-    }
-
-    virtual bool bite() override
-    {
-        return 1;
-    }
-
-    virtual void visionCreaturesUpdate(std::vector<VisiableEntity>visionCreaturesIn) override
-    {
-        visionCreatures=visionCreaturesIn;
-    }
-
-    virtual void visionFoodsUpdate(std::vector<VisiableEntity>visionFoodsIn)override
-    {
-        visionFoods=visionFoodsIn;
-    }
-
-    virtual void update(Condithions condithionsIn) override
-    {
-        condithions=condithionsIn;
+        return new AggressiveCreature(condithions);
     }
 
     virtual Path going() override
@@ -61,15 +36,15 @@ public:
         bool enemyNear=0;
         int enemyNumber=0;
         int nearEnemy=900;
-//        for(int i=0;i<visionCreatures.size();i++)
-//        {
-//            if(nearEnemy>visionCreatures[i].lenght&&visionCreatures[i].typeCreature!=condithions.typeCreature)
-//            {
-//                enemyNear=1;
-//                nearEnemy=visionCreatures[i].lenght;
-//                enemyNumber=i;
-//            }
-//        }
+        for(int i=0;i<visionCreatures.size();i++)
+        {
+            if(nearEnemy>visionCreatures[i].lenght&&visionCreatures[i].typeCreature!=condithions.typeCreature)
+            {
+                enemyNear=1;
+                nearEnemy=visionCreatures[i].lenght;
+                enemyNumber=i;
+            }
+        }
         if(enemyNear)
         {
             angle= visionCreatures[enemyNumber].angle;
@@ -116,14 +91,9 @@ public:
         {
             angle=(angle+1)%360;
         }
+        qDebug()<<"i agressive";
         return Path(speed,angle);
     }
-
-    Condithions condithions;
-    std::vector<VisiableEntity> visionCreatures;
-    std::vector<VisiableEntity> visionFoods;
-    int id;
-    int angle=0;
-    int speed=10;
 };
 
+#endif // AGGRESSIVECREATURE_H

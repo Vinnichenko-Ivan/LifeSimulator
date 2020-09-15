@@ -5,6 +5,7 @@ CreaturesGenerator::CreaturesGenerator(CreateCreature * createCreatureIn,QObject
     createCreature=createCreatureIn;
     updateCultures();
     thisCulture=cultures[0];
+    numberThisCulture=0;
 }
 
 void CreaturesGenerator::updateSizeArena()
@@ -19,7 +20,10 @@ void CreaturesGenerator::addCreature()
 {
     id=createCreature->getId();
     Condithions * condithions = new Condithions(id);
-    Creature * creature=new Creature(*condithions);
+    Creature * copyCreatures =creaturesCultures[numberThisCulture]->copyForBehavior();
+    qDebug()<<creaturesCultures[numberThisCulture];
+    Creature * creature=copyCreatures;
+    qDebug()<<creature;
     updateSizeArena();
     int x=rand()%wight;
     int y=rand()%height;
@@ -57,4 +61,5 @@ std::pair<std::string,int> CreaturesGenerator::getSetCultureCreatures()
 void CreaturesGenerator::updateCultures()
 {
     cultures=createCreature->getCultures();
+    creaturesCultures=createCreature->getCreatures();
 }

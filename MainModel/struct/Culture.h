@@ -1,5 +1,7 @@
 #ifndef CULTURE_H
 #define CULTURE_H
+//#include "../entity/struct/Condithions.h"
+//#include "../entity/Creature.h"
 #include <string>
 #include <QColor>
 #include <QPixmap>
@@ -8,15 +10,18 @@
 #include <QImage>
 #include <QtGui>
 #include "../../GUI/texture/creature.xpm"
+
 struct Culture
 {
     protected:
+        //Creature* creature;
         std::string nameOfCulture;
         QColor color;
         QPixmap pixmap;
     public:
-        Culture(QColor colorIn,std::string nameOfCultureIn)
+        Culture(QColor colorIn,std::string nameOfCultureIn)//,Creature* creatureIn)
         {
+            //creature=creatureIn;
             nameOfCulture=nameOfCultureIn;
             pixmap = QPixmap(creature_xpm);
             //qDebug()<< QPixmap(creature_xpm);

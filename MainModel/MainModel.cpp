@@ -60,9 +60,16 @@ std::pair<int,int> MainModel::getSizeArenaForFood()
 }
 
 MainModel::MainModel( QObject *parent): QObject(parent){
-    cultures.push_back(new Culture(QColor(255,0,0),"default"));
+
+    cultures.push_back(new Culture(QColor(255,0,0),"aggressive"));
+    Condithions* buffCondithions=new Condithions(0,cultures[0]);
+    culturesCreatures.push_back(new AggressiveCreature(*buffCondithions));
     cultures.push_back(new Culture(QColor(0,255,0),"default1"));
+    buffCondithions=new Condithions(0,cultures[1]);
+    culturesCreatures.push_back(new Creature(*buffCondithions));
     cultures.push_back(new Culture(QColor(0,0,255),"default2"));
+    buffCondithions=new Condithions(0,cultures[2]);
+    culturesCreatures.push_back(new Creature(*buffCondithions));
     statisticData=new StatisticData;
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &MainModel::update);
@@ -341,14 +348,15 @@ void MainModel::cellDivision(int number)
 {
     if(creatures.size()<maxCountCreatures||limitationCreatures==0||reproductIfMax)
     {
-        if(condithionsCreature[number]->energy>condithionsCreature[number]->maxEnergy*0.8&&condithionsCreature[number]->hp>15)
+        if(condithionsCreature[number]->energy>condithionsCreature[number]->maxEnergy*0.8&&condithionsCreature[number]->hp>75)
         {
             Condithions * condithion = new Condithions(id);
-            Creature * creature = new Creature(*condithion);
+            Creature * creature = creatures[number]->copyForBehavior();
             Cordinate * cordinate = new Cordinate(cordinatesCreatures[number]->x+rand()%10-5,cordinatesCreatures[number]->y+rand()%10-5);
             cordinate->angle=rand()%365;
             condithion->energy=condithionsCreature[number]->energy/2;
             condithionsCreature[number]->energy/=2;
+            creature->condithions=*condithion;
             condithion->typeCreature=condithionsCreature[number]->typeCreature;
             condithion->culture=condithionsCreature[number]->culture;
             addNewCreature(creature,cordinate,condithion);
@@ -403,4 +411,9 @@ void MainModel::statistic()
 QVector<Culture*> MainModel::getCultures()
 {
     return cultures;
+}
+
+QVector<Creature*> MainModel::getCreatures()
+{
+    return culturesCreatures;
 }

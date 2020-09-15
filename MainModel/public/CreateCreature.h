@@ -12,5 +12,6 @@ public:
     virtual void setId(int i)=0;
     virtual int getId()=0;
     virtual QVector<Culture*> getCultures()=0;
+    virtual QVector<Creature*> getCreatures()=0;
 };
 #endif // CREATECREATURE_H

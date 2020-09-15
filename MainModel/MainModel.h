@@ -21,6 +21,7 @@
 #include "entity/Creature.h"
 #include "entity/Food.h"
 #include "struct/Culture.h"
+#include "../Behavior/CreturesExample/AggressiveCreature.h"
 class QTimer;
 class IOldingCreatures;
 
@@ -47,6 +48,7 @@ public:
     virtual void setCountLimitFood(int i)override;
     virtual void stopReproductIfMax(bool i)override;
     virtual QVector<Culture*> getCultures()override;
+    virtual QVector<Creature*> getCreatures()override;
     ~MainModel();
     void pause();
     void start();
@@ -78,6 +80,7 @@ public:
     QVector<Condithions*> condithionsCreature;
     StatisticData * statisticData;
     QVector<Culture*> cultures;
+    QVector<Creature*> culturesCreatures;
 private: 
     QTimer * timer;
     CreateCreature * createCreature;    
