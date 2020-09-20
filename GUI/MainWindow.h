@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QMenu>
 #include <QAction>
+#include <QChar>
 #include "CentralWindow.h"
 class MainWindow : public QMainWindow
 {

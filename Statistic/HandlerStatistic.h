@@ -7,6 +7,7 @@ class HandlerStatistic
 public:
     HandlerStatistic(StatisticData * dataIn);
     StatisticData * data;
+    void update();
 };
 
 #endif // HANDLERSTATISTIC_H

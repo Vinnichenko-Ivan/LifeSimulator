@@ -1,17 +1,18 @@
-#ifndef AGGRESSIVECREATURE_H
-#define AGGRESSIVECREATURE_H
+#ifndef AFRAIDCREATURES_H
+#define AFRAIDCREATURES_H
 #include "../../MainModel/entity/Creature.h"
-
-class AggressiveCreature:  public Creature
+#include <math.h>
+class AfraidCreatures:  public Creature
 {
 public:
-    AggressiveCreature(Condithions condithionsIn):Creature(condithionsIn)
+
+    AfraidCreatures(Condithions condithionsIn):Creature(condithionsIn)
     {
     }
 
     virtual Creature* copyForBehavior()override
     {
-        return new AggressiveCreature(condithions);
+        return new AfraidCreatures(condithions);
     }
 
     virtual Path going() override
@@ -29,12 +30,12 @@ public:
                 enemyNumber=i;
             }
         }
-        if(enemyNear&&condithions.hp>50&&condithions.energy>250)
+        if(enemyNear)
         {
-            angle= visionCreatures[enemyNumber].angle;
-            if(std::abs(visionCreatures[enemyNumber].angle)>20&&visionCreatures[enemyNumber].lenght<20)
+            angle= (int)(-visionCreatures[enemyNumber].angle);
+            if(std::abs(visionCreatures[enemyNumber].angle<180))
             {
-                speed=0;
+                speed=10;
             }
         }
         else if(visionFoods.size()>0)
@@ -79,4 +80,4 @@ public:
     }
 };
 
-#endif // AGGRESSIVECREATURE_H
+#endif // AFRAIDCREATURES_H

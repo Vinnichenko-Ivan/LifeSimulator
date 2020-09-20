@@ -22,6 +22,7 @@
 #include "entity/Food.h"
 #include "struct/Culture.h"
 #include "../Behavior/CreturesExample/AggressiveCreature.h"
+#include "../Behavior/CreturesExample/AfraidCreatures.h"
 class QTimer;
 class IOldingCreatures;
 

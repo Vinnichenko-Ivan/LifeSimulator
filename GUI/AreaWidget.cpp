@@ -88,8 +88,8 @@ void AreaWidget::paintFood(int x,int y)
 
 void AreaWidget::paintCreatureVisionZone(int x,int y,int radius)
 {
-    painter->setPen(QPen(QColor(102,95,69,127), 0, Qt::SolidLine, Qt::FlatCap));
-    painter->setBrush(QBrush(QColor(102,95,69,127), Qt::SolidPattern));
+    painter->setPen(QPen(QColor(102,95,69,20), 0, Qt::SolidLine, Qt::FlatCap));
+    painter->setBrush(QBrush(QColor(102,95,69,20), Qt::SolidPattern));
     painter->drawEllipse(x-radius,y-radius,radius*2,radius*2);
 }
 

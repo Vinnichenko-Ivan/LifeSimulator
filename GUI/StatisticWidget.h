@@ -5,6 +5,7 @@
 #include <QLabel>
 #include <QPainter>
 #include <QGridLayout>
+#include "StatisticGraphics.h"
 #include "../Statistic/HandlerStatistic.h"
 class StatisticWidget : public QWidget
 {
@@ -16,6 +17,7 @@ public:
     QGridLayout* layout;
     QLabel * livesCreatures;
     HandlerStatistic * handlerStatistic;
+    StatisticGraphics * statisticGraphics;
 signals:
 
 };

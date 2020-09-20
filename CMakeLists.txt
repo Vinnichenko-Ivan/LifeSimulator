@@ -12,6 +12,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
+find_package(Qt5 COMPONENTS Charts REQUIRED)
 
 file(GLOB_RECURSE sources CONFIGURE_DEPENDS "*.cpp")
 file(GLOB_RECURSE headers CONFIGURE_DEPENDS "*.h" "*.hpp")
@@ -21,4 +22,4 @@ add_executable(lifeSimulator
   ${headers}
 )
 
-target_link_libraries(lifeSimulator PRIVATE Qt5::Widgets)
+target_link_libraries(lifeSimulator PRIVATE Qt5::Widgets Qt5::Charts )

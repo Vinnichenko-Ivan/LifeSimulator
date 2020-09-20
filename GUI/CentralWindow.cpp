@@ -32,6 +32,7 @@ CentralWindow::CentralWindow(QWidget *parent)
 
 void CentralWindow::graphicUpdate()
 {
+   handlerStatistic->update();
    arena->update();
    settings->update();
    statistics->update();

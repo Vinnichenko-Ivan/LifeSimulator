@@ -64,9 +64,9 @@ MainModel::MainModel( QObject *parent): QObject(parent){
     cultures.push_back(new Culture(QColor(255,0,0),"aggressive"));
     Condithions* buffCondithions=new Condithions(0,cultures[0]);
     culturesCreatures.push_back(new AggressiveCreature(*buffCondithions));
-    cultures.push_back(new Culture(QColor(0,255,0),"default1"));
+    cultures.push_back(new Culture(QColor(0,255,0),"afraid"));
     buffCondithions=new Condithions(0,cultures[1]);
-    culturesCreatures.push_back(new Creature(*buffCondithions));
+    culturesCreatures.push_back(new AfraidCreatures(*buffCondithions));
     cultures.push_back(new Culture(QColor(0,0,255),"default2"));
     buffCondithions=new Condithions(0,cultures[2]);
     culturesCreatures.push_back(new Creature(*buffCondithions));
@@ -402,10 +402,27 @@ void MainModel::stopReproductIfMax(bool i)
 
 void MainModel::statistic()
 {
+    statisticData->tickLives++;
     statisticData->countLivesCreatures=creatures.size();
     statisticData->countLivesFood=foods.size();
     statisticData->maxCountLivesCreatures=std::max(statisticData->maxCountLivesCreatures,statisticData->countLivesCreatures);
     statisticData->maxCountLivesFood=std::max(statisticData->maxCountLivesFood,statisticData->countLivesFood);
+    std::vector<std::pair<std::string,int>> creaturesCultures;
+    for(auto n:cultures)
+    {
+        creaturesCultures.push_back(std::pair<std::string,int>(n->getNameOfCulture(),0));
+    }
+    for(int i=0;i<condithionsCreature.size();i++)
+    {
+        for(auto n:creaturesCultures)
+        {
+            if(n.first==condithionsCreature[i]->typeCreature)
+            {
+                n.second++;
+            }
+        }
+    }
+    statisticData->creaturesCultures=creaturesCultures;
 }
 
 QVector<Culture*> MainModel::getCultures()
