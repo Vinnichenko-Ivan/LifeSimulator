@@ -21,6 +21,7 @@ struct Culture
     public:
         Culture(QColor colorIn,std::string nameOfCultureIn)//,Creature* creatureIn)
         {
+            color=colorIn;
             //creature=creatureIn;
             nameOfCulture=nameOfCultureIn;
             pixmap = QPixmap(creature_xpm);

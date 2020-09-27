@@ -192,7 +192,10 @@ void MainModel::update()
     visionFoodsToCreatures();
     goingCreatures(); //return (degree+540-currentAzimut)%360-180;
     feedingCreatures();
-    statistic();
+    if(isPaused==0)
+    {
+        statistic();
+    }
     if(limitationCreatures)
     {
         if(creatures.size()>maxCountCreatures)
@@ -352,7 +355,7 @@ void MainModel::cellDivision(int number)
         {
             Condithions * condithion = new Condithions(id);
             Creature * creature = creatures[number]->copyForBehavior();
-            Cordinate * cordinate = new Cordinate(cordinatesCreatures[number]->x+rand()%10-5,cordinatesCreatures[number]->y+rand()%10-5);
+            Cordinate * cordinate = new Cordinate(cordinatesCreatures[number]->x+rand()%20-10,cordinatesCreatures[number]->y+rand()%20-10);
             cordinate->angle=rand()%365;
             condithion->energy=condithionsCreature[number]->energy/2;
             condithionsCreature[number]->energy/=2;
@@ -414,11 +417,11 @@ void MainModel::statistic()
     }
     for(int i=0;i<condithionsCreature.size();i++)
     {
-        for(auto n:creaturesCultures)
+        for(int j=0;j<creaturesCultures.size();j++)
         {
-            if(n.first==condithionsCreature[i]->typeCreature)
+            if(creaturesCultures[j].first==condithionsCreature[i]->typeCreature)
             {
-                n.second++;
+                creaturesCultures[j].second++;
             }
         }
     }

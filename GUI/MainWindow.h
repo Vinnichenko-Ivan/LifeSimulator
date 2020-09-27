@@ -13,6 +13,7 @@ private:
     QMenu* file;
     QMenu* display;
     QMenu* displayCreatures;
+    QMenu* statistic;
     QAction* displayCreaturesVisionZone;
     QAction* displayCreaturesAxis;
     QAction* displayCreaturesHp;

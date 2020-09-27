@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     displayCreatures = new QMenu("Creatures");
     file = new QMenu("File");
     display = new QMenu("Display");
+    statistic = new QMenu("Statistic");
     displayCreaturesVisionZone = new QAction("Vision Zone");
     displayCreaturesVisionZone->setCheckable(true);
     displayCreaturesVisionZone->setChecked(centralWindow->arena->displayVizionZone);
@@ -19,10 +20,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     displayCreaturesEnergy =new QAction("Energy");
     displayCreaturesEnergy->setCheckable(true);
     displayCreaturesEnergy->setChecked(centralWindow->arena->displayCreaturesEnergy);
+
     helpWindow = new QAction("Help");
     file->addAction(helpWindow);
     menuBar()->addMenu(file);
     menuBar()->addMenu(display);
+    menuBar()->addMenu(statistic);
     display->addMenu(displayCreatures);
     displayCreatures->addAction(displayCreaturesVisionZone);
     displayCreatures->addAction(displayCreaturesAxis);

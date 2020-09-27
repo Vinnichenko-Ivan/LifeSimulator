@@ -1,7 +1,8 @@
 #include "HandlerStatistic.h"
 
-HandlerStatistic::HandlerStatistic(StatisticData * dataIn)
+HandlerStatistic::HandlerStatistic(StatisticData * dataIn,MainModel * modelIn)
 {
+    model=modelIn;
     data=dataIn;
 }
 

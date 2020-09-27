@@ -18,6 +18,7 @@ public:
     void paintEvent(QPaintEvent * event) override;
     void Background();
     void update();
+    void updateCultures();
     HandlerStatistic * handlerStatistic;
     QGridLayout * layout;
     QtCharts::QChartView* chartView;
@@ -25,6 +26,7 @@ public:
     QtCharts::QValueAxis *axisX;
     QtCharts::QValueAxis *axisY;
     QtCharts::QLineSeries *series;
+    QVector <std::pair<QtCharts::QLineSeries *,std::string>> seriesCultures;
 signals:
 
 };
