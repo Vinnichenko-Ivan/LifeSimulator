@@ -1,6 +1,6 @@
 #ifndef STATISTICDATA_H
 #define STATISTICDATA_H
-#include <string>]
+#include <string>
 #include <vector>
 struct StatisticData
 {

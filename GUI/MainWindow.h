@@ -18,6 +18,7 @@ private:
     QAction* displayCreaturesAxis;
     QAction* displayCreaturesHp;
     QAction* displayCreaturesEnergy;
+    QAction* saveStastistic;
     QAction* helpWindow;
 public:
     explicit MainWindow(QWidget *parent = nullptr);

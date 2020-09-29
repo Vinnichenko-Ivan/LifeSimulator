@@ -195,6 +195,7 @@ void MainModel::update()
     if(isPaused==0)
     {
         statistic();
+        updateStatisticInHandler();
     }
     if(limitationCreatures)
     {
@@ -437,3 +438,5 @@ QVector<Creature*> MainModel::getCreatures()
 {
     return culturesCreatures;
 }
+
+

@@ -21,11 +21,15 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     displayCreaturesEnergy->setCheckable(true);
     displayCreaturesEnergy->setChecked(centralWindow->arena->displayCreaturesEnergy);
 
+    saveStastistic =new QAction("Save");
+
     helpWindow = new QAction("Help");
     file->addAction(helpWindow);
     menuBar()->addMenu(file);
     menuBar()->addMenu(display);
     menuBar()->addMenu(statistic);
+    statistic->addAction(saveStastistic);
+
     display->addMenu(displayCreatures);
     displayCreatures->addAction(displayCreaturesVisionZone);
     displayCreatures->addAction(displayCreaturesAxis);
@@ -39,4 +43,5 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
             [=](bool i){centralWindow->arena->displayCreaturesHpTurn(i);});
     connect(displayCreaturesEnergy,QOverload<bool>::of(&QAction::toggled),
             [=](bool i){centralWindow->arena->displayCreaturesEnergyTurn(i);});
+    connect(saveStastistic,&QAction::triggered,centralWindow->handlerStatistic,&HandlerStatistic::save);
 }

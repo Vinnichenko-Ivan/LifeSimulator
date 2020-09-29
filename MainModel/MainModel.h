@@ -82,6 +82,8 @@ public:
     StatisticData * statisticData;
     QVector<Culture*> cultures;
     QVector<Creature*> culturesCreatures;
+signals:
+    void updateStatisticInHandler();
 private: 
     QTimer * timer;
     CreateCreature * createCreature;    
