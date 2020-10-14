@@ -67,8 +67,11 @@ MainModel::MainModel( QObject *parent): QObject(parent){
     cultures.push_back(new Culture(QColor(0,255,0),"afraid"));
     buffCondithions=new Condithions(0,cultures[1]);
     culturesCreatures.push_back(new AfraidCreatures(*buffCondithions));
-    cultures.push_back(new Culture(QColor(0,0,255),"default2"));
+    cultures.push_back(new Culture(QColor(0,0,255),"DetaCreatures"));
     buffCondithions=new Condithions(0,cultures[2]);
+    culturesCreatures.push_back(new DetaCreatures(*buffCondithions));
+    cultures.push_back(new Culture(QColor(0,127,127),"default2"));
+    buffCondithions=new Condithions(0,cultures[3]);
     culturesCreatures.push_back(new Creature(*buffCondithions));
     statisticData=new StatisticData;
     timer = new QTimer(this);
@@ -173,7 +176,7 @@ void MainModel::feedingCreatures()
                             condithionsCreature[j]->hp-=condithionsCreature[i]->damage;
                             if(condithionsCreature[j]->hp<1)
                             {
-                                condithionsCreature[i]->energy+=condithionsCreature[j]->energy*0.8;
+                                condithionsCreature[i]->energy+=condithionsCreature[j]->energy*0.7;
                                 condithionsCreature[j]->energy=0;
                             }
                         }
@@ -439,4 +442,10 @@ QVector<Creature*> MainModel::getCreatures()
     return culturesCreatures;
 }
 
-
+void MainModel::clearCreatures()
+{
+    while(creatures.size()>0)
+    {
+        killCreatures(0);
+    }
+}

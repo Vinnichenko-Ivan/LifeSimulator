@@ -13,6 +13,7 @@
 #include "../Generators/CreaturesGenerator.h"
 #include "../Generators/FoodGenerator.h"
 #include "Statistic/HandlerStatistic.h"
+#include "../FileSystemUtilits/SerDeserSistem.h"
 #include <QHBoxLayout>
 #include <QPainter>
 #include <QPen>
@@ -48,6 +49,7 @@ public:
     StatisticWidget* statistics;
     GeneratorsSettingWidget* generatoesSetting;
     HandlerStatistic * handlerStatistic;
+    SerDeserSistem * serDeserSistem;
     QTimer * timer;
     QMenuBar * menuBar;
 };

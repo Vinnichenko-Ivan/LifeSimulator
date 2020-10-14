@@ -14,11 +14,16 @@ private:
     QMenu* display;
     QMenu* displayCreatures;
     QMenu* statistic;
+    QMenu* saveFile;
+    QMenu* loadFile;
     QAction* displayCreaturesVisionZone;
     QAction* displayCreaturesAxis;
     QAction* displayCreaturesHp;
     QAction* displayCreaturesEnergy;
     QAction* saveStastistic;
+    QAction* saveAll;
+    QAction* replaceAll;
+    QAction* addAll;
     QAction* helpWindow;
 public:
     explicit MainWindow(QWidget *parent = nullptr);

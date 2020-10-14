@@ -23,6 +23,7 @@
 #include "struct/Culture.h"
 #include "../Behavior/CreturesExample/AggressiveCreature.h"
 #include "../Behavior/CreturesExample/AfraidCreatures.h"
+#include "../Behavior/CreturesExample/DetaCreatures.h"
 class QTimer;
 class IOldingCreatures;
 
@@ -67,6 +68,7 @@ public:
     void killFood(int number);
     void cellDivision(int number);
     void statistic();
+    void clearCreatures();
     double getAngleToCord(Cordinate* myCord, Cordinate* targetCord);
     double getLenghtToCord(Cordinate* myCord, Cordinate* targetCord);
     

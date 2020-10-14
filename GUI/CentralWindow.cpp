@@ -1,12 +1,11 @@
 #include "CentralWindow.h"
-//#include "./ui_CentralWindow.h"
 
 CentralWindow::CentralWindow(QWidget *parent)
     : QWidget(parent)
 {
-
     srand ( time(NULL) );
     model = new MainModel(this);
+    serDeserSistem = new SerDeserSistem(model,this);
     creaturesGenerator = new CreaturesGenerator(model,this);
     foodGenerator = new FoodGenerator(model,this);
     timer = new QTimer(this);    

@@ -5,7 +5,11 @@
 #include<QString>
 #include <string>
 #include "../../struct/Culture.h"
-struct Condithions
+#include "../../../FileSystemUtilits/Serialise.h"
+#include "../../../FileSystemUtilits/Deserialise.h"
+struct Condithions: public Serialise,
+        public Deserialise
+
 {
     Culture *culture;
     Condithions(int id=0, Culture *cultureIn=nullptr): id(id)
@@ -13,7 +17,6 @@ struct Condithions
         culture=cultureIn;
     }
     std::string typeCreature="-";
-    QColor color;
     int hp=100;
     int energy=500;
     int visionLenght=100;
@@ -57,6 +60,48 @@ struct Condithions
             return true;
         }
         return false;
+    }
+
+    virtual QJsonObject serialise() override
+    {
+        QJsonObject  obj = QJsonObject();
+        obj.insert("type","condithions");
+        obj.insert("typeCreature",QString::fromStdString(typeCreature));
+        obj.insert("cultures",QString::fromStdString(culture->getNameOfCulture()));
+        obj.insert("hp",hp);
+        obj.insert("energy",energy);
+        obj.insert("visionLenght",visionLenght);
+        obj.insert("id",id);
+        obj.insert("maxHp",maxHp);
+        obj.insert("maxEnergy",maxEnergy);
+        obj.insert("damage",damage);
+        obj.insert("energyToHp",energyToHp);
+        obj.insert("maxLenght",maxLenght);
+        obj.insert("maxAngleD",maxAngleD);
+        obj.insert("age",age);
+        return obj;
+    }
+
+    virtual bool desirialise (QJsonObject & document) override
+    {
+        if(document.take("type").toString().toStdString()!="condithions")
+        {
+            qDebug()<<"NOT CONDITHION";
+            return 0;
+        }
+        typeCreature = document.take("typeCreature").toString().toStdString();
+        hp = document.take("hp").toInt();
+        energy = document.take("energy").toInt();
+        visionLenght = document.take("visionLenght").toInt();
+        id = document.take("id").toInt();
+        maxHp = document.take("maxHp").toInt();
+        maxEnergy = document.take("maxEnergy").toInt();
+        damage = document.take("damage").toInt();
+        energyToHp = document.take("energyToHp").toInt();
+        maxLenght = document.take("maxLenght").toDouble();
+        maxAngleD = document.take("maxAngleD").toDouble();
+        age = document.take("age").toInt();
+        return 1;
     }
 };
 #endif // CONDITHIONS_H

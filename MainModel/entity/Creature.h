@@ -8,13 +8,22 @@
 #include "public/IVisionCreatures.h"
 #include "struct/Path.h"
 #include "struct/VisiableEntity.h"
+#include "../../FileSystemUtilits/Serialise.h"
+#include "../../FileSystemUtilits/Deserialise.h"
 class Condithions;
 class Creature: public IOldingCreatures,
         public IDoingCreatures,
-        public IVisionCreatures
+        public IVisionCreatures,
+        public Serialise,
+        public Deserialise
 {
 public:
-
+    Condithions condithions;
+    std::vector<VisiableEntity> visionCreatures;
+    std::vector<VisiableEntity> visionFoods;
+    int id;
+    int angle=0;
+    int speed=10;
     Creature(Condithions condithionsIn)
     {
         condithions=condithionsIn;
@@ -61,15 +70,6 @@ public:
         bool enemyNear=0;
         int enemyNumber=0;
         int nearEnemy=900;
-//        for(int i=0;i<visionCreatures.size();i++)
-//        {
-//            if(nearEnemy>visionCreatures[i].lenght&&visionCreatures[i].typeCreature!=condithions.typeCreature)
-//            {
-//                enemyNear=1;
-//                nearEnemy=visionCreatures[i].lenght;
-//                enemyNumber=i;
-//            }
-//        }
         if(enemyNear)
         {
             angle= visionCreatures[enemyNumber].angle;
@@ -119,11 +119,21 @@ public:
         return Path(speed,angle);
     }
 
-    Condithions condithions;
-    std::vector<VisiableEntity> visionCreatures;
-    std::vector<VisiableEntity> visionFoods;
-    int id;
-    int angle=0;
-    int speed=10;
+    virtual QJsonObject serialise() override
+    {
+        QJsonObject  obj = QJsonObject();
+        obj.insert("type","creatures");
+        return obj;
+    }
+
+    virtual bool desirialise (QJsonObject & document) override
+    {
+        if(document.take("type").toString().toStdString()!="creatures")
+        {
+            qDebug()<<"NOT CREA";
+            return 0;
+        }
+        return 1;
+    }
 };
 

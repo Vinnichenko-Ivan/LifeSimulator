@@ -16,7 +16,6 @@ GeneratorsSettingWidget::GeneratorsSettingWidget(IFoodGenerator * iFoodGenerator
     connect(addFoodButton,   &QPushButton::clicked, this,  &GeneratorsSettingWidget::addFoodSlot);
     connect(addFoodByTimer, QOverload<int>::of(&QSpinBox::valueChanged),
         [=](int i){reloadFoodTimer(i);});
-   // connect(cultureSetting , &QComboBox::,this, &GeneratorsSettingWidget::setCuturalCreatures);
     connect(cultureSetting, QOverload<int>::of(&QComboBox::activated),
         [=](int index){ setCultureCreatures(index); });
     layout->addWidget(addFoodButton,0,1);
