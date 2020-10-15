@@ -449,3 +449,11 @@ void MainModel::clearCreatures()
         killCreatures(0);
     }
 }
+
+void MainModel::clearFood()
+{
+    while(foods.size()>0)
+    {
+        killFood(0);
+    }
+}

@@ -23,6 +23,8 @@ void SerDeserSistem::saveAll()
     saveCondithionsCreatures();
     saveCreatures();
     saveProFile();
+    saveFood();
+    saveFoodCord();
 }
 
 void SerDeserSistem::saveCordinatesCreatures()
@@ -90,53 +92,91 @@ void SerDeserSistem::loadAndAddAll()
     saveFileName= loader.getOpenFileName (nullptr,
                                                      tr("Save Project Files"),
                                                      QString());
-    QDir dir=loader.directory();
+    loadCreatures();
+    loadFood();
+}
+
+void SerDeserSistem::loadAndReplaceAll()
+{
+    QFileDialog loader;
+    saveFileName= loader.getOpenFileName (nullptr,
+                                                     tr("Save Project Files"),
+                                                     QString());
     saveFileName.remove(saveFileName.size()-8,8);
-    qDebug() << saveFileName+"/creatures.json";
-    QFile creaturesFiles(saveFileName+"/creatures.json");
-    QFile creaturesCondithionsFiles(saveFileName+"/condithionsCreatures.json");
-    QFile creaturesCordinatesFiles(saveFileName+"/cordinatesCreatures.json");
-    if (!creaturesFiles.open(QIODevice::ReadOnly))
+    model->clearCreatures();
+    model->clearFood();
+    loadCreatures();
+    loadFood();
+}
+
+void SerDeserSistem::saveFood()
+{
+    QJsonArray food;
+    for(auto n:model->foods)
+    {
+        food.append(n->serialise());
+    }
+    QFile jsonFile(saveFileName+"/food.json");
+    if(!jsonFile.open(QIODevice::WriteOnly))
+    {
+        qDebug() << "Ошибка открытия для записи";
+    }
+    jsonFile.write(QJsonDocument(food).toJson(QJsonDocument::Indented));
+    jsonFile.close();
+}
+
+void SerDeserSistem::saveFoodCord()
+{
+    QJsonArray foodCord;
+    for(auto n:model->cordinatesFoods)
+    {
+        foodCord.append(n->serialise());
+    }
+    QFile jsonFile(saveFileName+"/foodCordinates.json");
+    if(!jsonFile.open(QIODevice::WriteOnly))
+    {
+        qDebug() << "Ошибка открытия для записи";
+    }
+    jsonFile.write(QJsonDocument(foodCord).toJson(QJsonDocument::Indented));
+    jsonFile.close();
+}
+
+void SerDeserSistem::loadFood()
+{
+    qDebug() << saveFileName+"/food.json";
+    QFile foodsFiles(saveFileName+"/food.json");
+    QFile foodsCordFiles(saveFileName+"/foodCordinates.json");
+    if (!foodsCordFiles.open(QIODevice::ReadOnly))
     {
         qDebug()<<"Project crashed!!! Permission?";
         return;
     }
 
-    if (!creaturesCondithionsFiles.open(QIODevice::ReadOnly))
+    if (!foodsFiles.open(QIODevice::ReadOnly))
     {
         qDebug()<<"Project crashed!!! Permission?";
         return;
     }
 
-    if (!creaturesCordinatesFiles.open(QIODevice::ReadOnly))
-    {
-        qDebug()<<"Project crashed!!! Permission?";
-        return;
-    }
+    QByteArray foodsFilesB = foodsFiles.readAll();
+    QByteArray foodsCordinatesFilesB = foodsCordFiles.readAll();
+    QJsonDocument foodsJson(QJsonDocument::fromJson(foodsFilesB));
+    QJsonDocument foodsCordinatesJson(QJsonDocument::fromJson(foodsCordinatesFilesB));
+    QJsonArray foodsFilesArray = foodsJson.array();
+    QJsonArray foodsCordinatesFilesArray = foodsCordinatesJson.array();
 
-    QByteArray creaturesFilesB = creaturesFiles.readAll();
-    QByteArray creaturesCondithionsFilesB = creaturesCondithionsFiles.readAll();
-    QByteArray creaturesCordinatesFilesB = creaturesCordinatesFiles.readAll();
-    QJsonDocument creaturesJson(QJsonDocument::fromJson(creaturesFilesB));
-    QJsonDocument creaturesCondithionsJson(QJsonDocument::fromJson(creaturesCondithionsFilesB));
-    QJsonDocument creaturesCordinatesJson(QJsonDocument::fromJson(creaturesCordinatesFilesB));
-    QJsonArray creaturesFilesArray = creaturesJson.array();
-    QJsonArray creaturesCondithionsFilesArray = creaturesCondithionsJson.array();
-    QJsonArray creaturesCordinatesFilesArray = creaturesCordinatesJson.array();
-    if(creaturesFilesArray.size()!=creaturesCondithionsFilesArray.size()||creaturesCondithionsFilesArray.size()!=creaturesCordinatesFilesArray.size())
+    if(foodsFilesArray.size()!=foodsCordinatesFilesArray.size())
     {
         qDebug()<<"Project crashed!!!";
         return;
     }
 
-    for(int i = 0; i < creaturesFilesArray.size(); i++)
+    for(int i = 0; i < foodsFilesArray.size(); i++)
     {
-        QJsonObject creatures=creaturesFilesArray[i].toObject();
-        QJsonObject cordinates=creaturesCordinatesFilesArray[i].toObject();
-        QJsonObject condithions=creaturesCondithionsFilesArray[i].toObject();
+        QJsonObject foods=foodsFilesArray[i].toObject();
+        QJsonObject cordinates=foodsCordinatesFilesArray[i].toObject();
         Cordinate * cordinate = new Cordinate();
-        Condithions * condithion = new Condithions();
-        Creature * creature;
+        Food * food = new Food(0);
 
         if(!cordinate->desirialise(cordinates))
         {
@@ -144,52 +184,17 @@ void SerDeserSistem::loadAndAddAll()
             return;
         }
 
-        if(!condithion->desirialise(condithions))
+        if(!food->desirialise(foods))
         {
-            qDebug()<<"error desirialise(condithions)";
+            qDebug()<<"error desirialise(food)";
             return;
         }
-
-        int numberCulture=-1;
-        QString buff = condithions.take("cultures").toString();
-        for(int j = 0;j<model->cultures.size();j++)
-        {
-            if(QString::fromStdString( model->cultures[j]->getNameOfCulture())==buff)
-            {
-                numberCulture=j;
-            }
-            qDebug()<<QString::fromStdString( model->cultures[j]->getNameOfCulture())<<" "<<buff;
-        }
-
-        if(numberCulture==-1)
-        {
-            qDebug()<<"error numberCulture==-1";
-            return;
-        }
-        else
-        {
-            creature = model->culturesCreatures[numberCulture]->copyForBehavior();
-            condithion->culture = model->cultures[numberCulture];
-        }
-
-        if(!creature->desirialise(creatures))
-        {
-            qDebug()<<"error desirialise(creatures)";
-            return;
-        }
-        model->addNewCreature(creature,cordinate,condithion);
+        model->addNewFood(food,cordinate);
     }
 }
 
-void SerDeserSistem::loadAndReplaceAll()
+void SerDeserSistem::loadCreatures()
 {
-    model->clearCreatures();
-    QFileDialog loader;
-    saveFileName= loader.getOpenFileName (nullptr,
-                                                     tr("Save Project Files"),
-                                                     QString());
-    QDir dir=loader.directory();
-    saveFileName.remove(saveFileName.size()-8,8);
     qDebug() << saveFileName+"/creatures.json";
     QFile creaturesFiles(saveFileName+"/creatures.json");
     QFile creaturesCondithionsFiles(saveFileName+"/condithionsCreatures.json");

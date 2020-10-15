@@ -17,6 +17,10 @@ public:
     void saveCondithionsCreatures();
     void saveCreatures();
     void saveProFile();
+    void saveFood();
+    void saveFoodCord();
+    void loadCreatures();
+    void loadFood();
     void loadAndAddAll();
     void loadAndReplaceAll();
     QString saveFileName;

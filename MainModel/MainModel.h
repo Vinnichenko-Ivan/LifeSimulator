@@ -69,6 +69,7 @@ public:
     void cellDivision(int number);
     void statistic();
     void clearCreatures();
+    void clearFood();
     double getAngleToCord(Cordinate* myCord, Cordinate* targetCord);
     double getLenghtToCord(Cordinate* myCord, Cordinate* targetCord);
     
